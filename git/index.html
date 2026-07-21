@@ -17,7 +17,6 @@
       --sidebar-width: 320px;
     }
 
-    /* Global Font Override */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -36,7 +35,6 @@
       letter-spacing: 0.025em;
     }
 
-    /* Header Styling */
     .top-header {
       background-color: #000000;
       border-bottom: 1px solid #18181b;
@@ -79,7 +77,6 @@
       font-size: 1.25rem;
     }
 
-    /* Main Layout */
     .main-container {
       display: flex;
       flex: 1;
@@ -87,7 +84,6 @@
       position: relative;
     }
 
-    /* Sidebar Overlay (Mobile backdrop) */
     .sidebar-overlay {
       position: absolute;
       top: 0;
@@ -104,7 +100,6 @@
       display: block;
     }
 
-    /* Desktop Sidebar Styling (Default: Open) */
     .sidebar {
       width: var(--sidebar-width);
       background-color: var(--bg-sidebar);
@@ -119,7 +114,6 @@
       z-index: 15;
     }
 
-    /* Desktop Collapse State */
     .sidebar.collapsed {
       width: 0;
       padding: 0;
@@ -134,7 +128,6 @@
       padding-right: 4px;
     }
 
-    /* Accordion Menu */
     .accordion-section {
       margin-bottom: 0.75rem;
       border-radius: 6px;
@@ -221,7 +214,6 @@
       color: var(--accent-color);
     }
 
-    /* Content Area */
     .content-area {
       flex: 1;
       display: flex;
@@ -261,7 +253,6 @@
       font-style: italic;
     }
 
-    /* Bottom Article Navigation */
     .article-navigation {
       width: 100%;
       max-width: 1200px;
@@ -309,7 +300,6 @@
       font-size: 1rem;
     }
 
-    /* Page Footer */
     .main-footer {
       width: 100%;
       max-width: 1200px;
@@ -334,19 +324,10 @@
       color: var(--accent-color);
     }
 
-    /* Mobile Overrides (<= 768px) */
     @media (max-width: 768px) {
-      .top-header {
-        padding: 0.75rem 1rem;
-      }
-
-      .brand-title {
-        font-size: 1rem;
-      }
-
-      .logo-img {
-        height: 2.5rem;
-      }
+      .top-header { padding: 0.75rem 1rem; }
+      .brand-title { font-size: 1rem; }
+      .logo-img { height: 2.5rem; }
 
       .sidebar {
         position: absolute;
@@ -360,30 +341,12 @@
         pointer-events: auto;
       }
 
-      .sidebar.mobile-open {
-        transform: translateX(0);
-      }
-
-      .article-container-wrapper {
-        padding: 1rem;
-      }
-
-      .article-body {
-        padding: 20px;
-      }
-
-      .article-navigation {
-        flex-direction: column;
-      }
-
-      .article-nav-btn {
-        width: 100%;
-      }
-
-      #nextArticleBtn {
-        text-align: left;
-        align-items: flex-start;
-      }
+      .sidebar.mobile-open { transform: translateX(0); }
+      .article-container-wrapper { padding: 1rem; }
+      .article-body { padding: 20px; }
+      .article-navigation { flex-direction: column; }
+      .article-nav-btn { width: 100%; }
+      #nextArticleBtn { text-align: left; align-items: flex-start; }
     }
   </style>
 </head>
@@ -413,11 +376,11 @@
           </button>
           <div class="accordion-content">
             <ul>
-              <li><a href="/git/articles/introduction-to-version-control-and-git-architecture" data-slug="introduction-to-version-control-and-git-architecture" class="nav-link">Introduction to Version Control & Git Architecture</a></li>
-              <li><a href="/git/articles/navigating-the-git-lifecycle" data-slug="navigating-the-git-lifecycle" class="nav-link">Navigating the Git Lifecycle</a></li>
-              <li><a href="/git/articles/inspecting-history-and-time-travel" data-slug="inspecting-history-and-time-travel" class="nav-link">Inspecting History & Time Travel</a></li>
-              <li><a href="/git/articles/branching-fundamentals" data-slug="branching-fundamentals" class="nav-link">Branching Fundamentals</a></li>
-              <li><a href="/git/articles/merging-and-basic-conflict-resolution" data-slug="merging-and-basic-conflict-resolution" class="nav-link">Merging & Basic Conflict Resolution</a></li>
+              <li><a href="?article=introduction-to-version-control-and-git-architecture" data-slug="introduction-to-version-control-and-git-architecture" class="nav-link">Introduction to Version Control & Git Architecture</a></li>
+              <li><a href="?article=navigating-the-git-lifecycle" data-slug="navigating-the-git-lifecycle" class="nav-link">Navigating the Git Lifecycle</a></li>
+              <li><a href="?article=inspecting-history-and-time-travel" data-slug="inspecting-history-and-time-travel" class="nav-link">Inspecting History & Time Travel</a></li>
+              <li><a href="?article=branching-fundamentals" data-slug="branching-fundamentals" class="nav-link">Branching Fundamentals</a></li>
+              <li><a href="?article=merging-and-basic-conflict-resolution" data-slug="merging-and-basic-conflict-resolution" class="nav-link">Merging & Basic Conflict Resolution</a></li>
             </ul>
           </div>
         </div>
@@ -430,11 +393,11 @@
           </button>
           <div class="accordion-content">
             <ul>
-              <li><a href="/git/articles/connecting-to-the-remote-world" data-slug="connecting-to-the-remote-world" class="nav-link">Connecting to the Remote World</a></li>
-              <li><a href="/git/articles/synchronizing-team-changes" data-slug="synchronizing-team-changes" class="nav-link">Synchronizing Team Changes</a></li>
-              <li><a href="/git/articles/mastering-git-stash-and-local-cleanliness" data-slug="mastering-git-stash-and-local-cleanliness" class="nav-link">Mastering Git Stash & Local Cleanliness</a></li>
-              <li><a href="/git/articles/undoing-mistakes-safely" data-slug="undoing-mistakes-safely" class="nav-link">Undoing Mistakes Safely</a></li>
-              <li><a href="/git/articles/resetting-history-the-nuclear-options" data-slug="resetting-history-the-nuclear-options" class="nav-link">Resetting History (The Nuclear Options)</a></li>
+              <li><a href="?article=connecting-to-the-remote-world" data-slug="connecting-to-the-remote-world" class="nav-link">Connecting to the Remote World</a></li>
+              <li><a href="?article=synchronizing-team-changes" data-slug="synchronizing-team-changes" class="nav-link">Synchronizing Team Changes</a></li>
+              <li><a href="?article=mastering-git-stash-and-local-cleanliness" data-slug="mastering-git-stash-and-local-cleanliness" class="nav-link">Mastering Git Stash & Local Cleanliness</a></li>
+              <li><a href="?article=undoing-mistakes-safely" data-slug="undoing-mistakes-safely" class="nav-link">Undoing Mistakes Safely</a></li>
+              <li><a href="?article=resetting-history-the-nuclear-options" data-slug="resetting-history-the-nuclear-options" class="nav-link">Resetting History (The Nuclear Options)</a></li>
             </ul>
           </div>
         </div>
@@ -447,11 +410,11 @@
           </button>
           <div class="accordion-content">
             <ul>
-              <li><a href="/git/articles/rebase-vs-merge" data-slug="rebase-vs-merge" class="nav-link">Rebase vs Merge</a></li>
-              <li><a href="/git/articles/advanced-history-manipulation-interactive-rebase" data-slug="advanced-history-manipulation-interactive-rebase" class="nav-link">Advanced History Manipulation (Interactive Rebase)</a></li>
-              <li><a href="/git/articles/cherry-picking-and-debugging-history" data-slug="cherry-picking-and-debugging-history" class="nav-link">Cherry-Picking & Debugging History</a></li>
-              <li><a href="/git/articles/enterprise-branching-strategies" data-slug="enterprise-branching-strategies" class="nav-link">Enterprise Branching Strategies</a></li>
-              <li><a href="/git/articles/git-hooks-and-submodules" data-slug="git-hooks-and-submodules" class="nav-link">Git Hooks & Submodules</a></li>
+              <li><a href="?article=rebase-vs-merge" data-slug="rebase-vs-merge" class="nav-link">Rebase vs Merge</a></li>
+              <li><a href="?article=advanced-history-manipulation-interactive-rebase" data-slug="advanced-history-manipulation-interactive-rebase" class="nav-link">Advanced History Manipulation (Interactive Rebase)</a></li>
+              <li><a href="?article=cherry-picking-and-debugging-history" data-slug="cherry-picking-and-debugging-history" class="nav-link">Cherry-Picking & Debugging History</a></li>
+              <li><a href="?article=enterprise-branching-strategies" data-slug="enterprise-branching-strategies" class="nav-link">Enterprise Branching Strategies</a></li>
+              <li><a href="?article=git-hooks-and-submodules" data-slug="git-hooks-and-submodules" class="nav-link">Git Hooks & Submodules</a></li>
             </ul>
           </div>
         </div>
@@ -463,10 +426,10 @@
     <main class="content-area" id="contentArea">
       <div class="article-container-wrapper">
         <article class="article-body" id="articleContainer">
-          <p class="loading-text">Select a topic from the sidebar to begin.</p>
+          <p class="loading-text">Loading topic content...</p>
         </article>
 
-        <!-- Bottom Article Navigation -->
+        <!-- Bottom Navigation -->
         <div class="article-navigation" id="articleNav" style="display: none;">
           <button id="prevArticleBtn" class="article-nav-btn">
             <span class="nav-label">← Previous</span>
@@ -496,14 +459,12 @@
       const sidebarOverlay = document.getElementById('sidebarOverlay');
       const articleContainer = document.getElementById('articleContainer');
       
-      // Navigation elements
       const articleNav = document.getElementById('articleNav');
       const prevBtn = document.getElementById('prevArticleBtn');
       const nextBtn = document.getElementById('nextArticleBtn');
       const prevTitle = document.getElementById('prevArticleTitle');
       const nextTitle = document.getElementById('nextArticleTitle');
 
-      // Helper function to close sidebar on mobile
       function closeMobileSidebar() {
         if (window.innerWidth <= 768) {
           sidebar.classList.remove('mobile-open');
@@ -511,7 +472,6 @@
         }
       }
 
-      // Toggle Sidebar behavior
       logoToggle.addEventListener('click', () => {
         if (window.innerWidth <= 768) {
           sidebar.classList.toggle('mobile-open');
@@ -523,7 +483,6 @@
 
       sidebarOverlay.addEventListener('click', closeMobileSidebar);
 
-      // Accordion Toggle Behavior
       const accordionHeaders = document.querySelectorAll('.accordion-header');
       accordionHeaders.forEach(header => {
         header.addEventListener('click', () => {
@@ -540,33 +499,9 @@
         });
       });
 
-      // Helper: Determines root path dynamically for safe fetching on GitHub Pages
-      function getAppBaseRoot() {
-        const path = window.location.pathname;
-        
-        // 1. If inside a /git/ subfolder route
-        const gitIndex = path.indexOf('/git/');
-        if (gitIndex !== -1) {
-          return path.substring(0, gitIndex);
-        }
-        
-        // 2. If inside /articles/ route
-        const articlesIndex = path.indexOf('/articles/');
-        if (articlesIndex !== -1) {
-          return path.substring(0, articlesIndex);
-        }
-        
-        // 3. Fallback for GitHub Pages root repo path (e.g., /repo-name or /)
-        const cleanPath = path.endsWith('/') ? path.slice(0, -1) : path;
-        return cleanPath;
-      }
-
-      // Load article asynchronously
+      // Relative Fetching logic (Uses ./ to keep relative path safe across hosts)
       async function loadArticle(slug, pushToHistory = true) {
         if (!slug) return;
-        
-        // Clean slug
-        slug = slug.replace(/^.*\/articles\//, '').replace(/\.html$/, '');
 
         const contentArea = document.getElementById('contentArea');
         if (contentArea) contentArea.scrollTo({ top: 0, behavior: 'smooth' });
@@ -574,9 +509,8 @@
         articleContainer.innerHTML = '<p class="loading-text">Loading topic content...</p>';
         articleNav.style.display = 'none';
 
-        const baseRoot = getAppBaseRoot();
-        const fetchPath = `${baseRoot}/articles/${slug}.html?t=${Date.now()}`;
-        const displayUrl = `${baseRoot}/git/articles/${slug}`;
+        // Direct relative path targeting the articles directory
+        const fetchPath = `./articles/${slug}.html?t=${Date.now()}`;
 
         try {
           const response = await fetch(fetchPath);
@@ -589,7 +523,9 @@
           articleContainer.innerHTML = htmlContent;
 
           if (pushToHistory) {
-            history.pushState({ slug }, '', displayUrl);
+            const currentUrl = new URL(window.location.href);
+            currentUrl.searchParams.set('article', slug);
+            history.pushState({ slug }, '', currentUrl.pathname + currentUrl.search);
           }
 
           updateActiveLink(slug);
@@ -599,7 +535,7 @@
           articleContainer.innerHTML = `
             <div style="padding: 1rem 0;">
               <h2 style="color: #ff6d00;">Topic Content Not Found</h2>
-              <p style="margin-top: 0.5rem;">Failed to load <code>articles/${slug}.html</code>.</p>
+              <p style="margin-top: 0.5rem;">Failed to fetch <code>articles/${slug}.html</code>.</p>
               <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #9ca3af;">Checked Path: <code>${fetchPath}</code></p>
             </div>
           `;
@@ -607,7 +543,6 @@
         }
       }
 
-      // Navigation button handler
       function updateNavigationButtons(currentSlug) {
         const links = Array.from(sidebarNav.querySelectorAll('.nav-link'));
         const currentIndex = links.findIndex(link => link.dataset.slug === currentSlug);
@@ -674,30 +609,15 @@
       });
 
       window.addEventListener('popstate', (e) => {
-        if (e.state && e.state.slug) {
-          loadArticle(e.state.slug, false);
-        } else {
-          resolveInitialRoute();
-        }
+        resolveInitialRoute();
       });
 
       function resolveInitialRoute() {
-        let path = window.location.pathname;
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleParam = urlParams.get('article');
 
-        // Check if we were redirected from 404.html redirect trick
-        if (sessionStorage.redirect) {
-          const redirectedUrl = new URL(sessionStorage.redirect);
-          delete sessionStorage.redirect;
-          path = redirectedUrl.pathname;
-          
-          // Restore the clean target URL bar without causing a reload
-          history.replaceState(null, '', path);
-        }
-
-        const match = path.match(/\/articles\/([^\/\?#]+)/);
-
-        if (match && match[1]) {
-          loadArticle(match[1], false);
+        if (articleParam) {
+          loadArticle(articleParam, false);
         } else {
           const firstLink = sidebarNav.querySelector('.nav-link');
           if (firstLink && firstLink.dataset.slug) {
