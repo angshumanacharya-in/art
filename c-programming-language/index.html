@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C Programming Masterclass - Knowledge Base</title>
+  <style>
+    :root {
+      --bg-main: #1a1a1a;
+      --bg-sidebar: #242424;
+      --bg-card: #2a2a2a;
+      --border-color: #333333;
+      --text-main: #eff1f5;
+      --text-muted: #9ca3af;
+      --accent-color: #22c55e;
+      --glow-color: #ff6d00;
+      --sidebar-width: 320px;
+    }
+
+    /* Global Font Override */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Calisto MT', 'Bookman Old Style', Georgia, serif !important;
+      font-weight: 700 !important;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      letter-spacing: 0.025em;
+    }
+
+    /* Header Styling */
+    .top-header {
+      background-color: #000000;
+      border-bottom: 1px solid #18181b;
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      flex-shrink: 0;
+      z-index: 20;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .logo-img {
+      height: 3rem; 
+      width: auto;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .logo-container:hover .logo-img {
+      transform: scale(1.05);
+    }
+
+    .brand-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #71717a;
+    }
+
+    .logo-separator {
+      color: #71717a;
+      font-size: 1.25rem;
+    }
+
+    /* Main Layout */
+    .main-container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Sidebar Overlay (Mobile backdrop) */
+    .sidebar-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 14;
+      display: none;
+      backdrop-filter: blur(2px);
+    }
+
+    .sidebar-overlay.active {
+      display: block;
+    }
+
+    /* Desktop Sidebar Styling (Default: Open) */
+    .sidebar {
+      width: var(--sidebar-width);
+      background-color: var(--bg-sidebar);
+      color: var(--text-muted);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      padding: 1.25rem 1rem;
+      flex-shrink: 0;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease, opacity 0.2s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      z-index: 15;
+    }
+
+    /* Desktop Collapse State */
+    .sidebar.collapsed {
+      width: 0;
+      padding: 0;
+      border-right: none;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    /* Accordion Menu */
+    .accordion-section {
+      margin-bottom: 0.75rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .accordion-header:hover {
+      background-color: rgba(255, 109, 0, 0.1);
+      color: var(--glow-color);
+    }
+
+    .accordion-icon {
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+      color: var(--text-muted);
+    }
+
+    .accordion-section.open .accordion-icon {
+      transform: rotate(180deg);
+      color: var(--accent-color);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .accordion-section.open .accordion-content {
+      max-height: 2000px;
+      transition: max-height 0.3s ease-in-out;
+    }
+
+    .accordion-content ul {
+      list-style: none;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .nav-link {
+      display: block;
+      background-color: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-link:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+      background-color: rgba(34, 197, 94, 0.05);
+    }
+
+    .nav-link.active {
+      background-color: rgba(34, 197, 94, 0.15);
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background-color: var(--bg-main);
+      overflow-y: auto;
+    }
+
+    .article-container-wrapper {
+      padding: 2.5rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100%;
+    }
+
+    .article-body {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: rgba(39, 39, 42, 0.4);
+      border: 1px solid rgba(63, 63, 70, 0.8);
+      padding: 40px;
+      border-radius: 12px;
+      transition: max-width 0.3s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .article-body:hover {
+      border-color: var(--glow-color);
+      box-shadow: 0 0 16px -2px rgba(255, 109, 0, 0.4);
+    }
+
+    .loading-text {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* Bottom Article Navigation */
+    .article-navigation {
+      width: 100%;
+      max-width: 1200px;
+      margin: 2rem auto 0 auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: max-width 0.3s ease;
+    }
+
+    .article-nav-btn {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 48%;
+      color: var(--text-main);
+      text-align: left;
+    }
+
+    .article-nav-btn:hover {
+      border-color: var(--glow-color);
+      box-shadow: 0 0 16px -2px rgba(255, 109, 0, 0.4);
+    }
+
+    #nextArticleBtn {
+      text-align: right;
+      align-items: flex-end;
+    }
+
+    .nav-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .nav-title {
+      color: var(--accent-color);
+      font-size: 1rem;
+    }
+
+    /* Page Footer */
+    .main-footer {
+      width: 100%;
+      max-width: 1200px;
+      margin: 3rem auto 0 auto;
+      padding: 2rem 0;
+      border-top: 1px solid #18181b;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .footer-text {
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      color: #71717a;
+    }
+
+    .footer-brand-orange {
+      color: var(--glow-color);
+    }
+
+    .footer-brand-green {
+      color: var(--accent-color);
+    }
+
+    /* Mobile Overrides (<= 768px) */
+    @media (max-width: 768px) {
+      .top-header {
+        padding: 0.75rem 1rem;
+      }
+
+      .brand-title {
+        font-size: 1rem;
+      }
+
+      .logo-img {
+        height: 2.5rem;
+      }
+
+      /* On Mobile: Drawer is Hidden Off-Screen by Default */
+      .sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 280px;
+        box-shadow: 4px 0 16px rgba(0, 0, 0, 0.5);
+        transform: translateX(-100%);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* Mobile Open State */
+      .sidebar.mobile-open {
+        transform: translateX(0);
+      }
+
+      .article-container-wrapper {
+        padding: 1rem;
+      }
+
+      .article-body {
+        padding: 20px;
+      }
+
+      .article-navigation {
+        flex-direction: column;
+      }
+
+      .article-nav-btn {
+        width: 100%;
+      }
+
+      #nextArticleBtn {
+        text-align: left;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="top-header">
+    <div class="logo-container" id="logoToggle" role="button" tabindex="0" title="Toggle Sidebar">
+      <img src="logo.png" alt="Logo" class="logo-img" onerror="this.style.border='1px dashed #333'; this.style.padding='4px';">
+      <span class="logo-separator">/</span>
+      <span class="brand-title">C Programming Language</span>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <nav class="sidebar-nav" id="sidebarNav">
+
+        <!-- Foundations -->
+        <div class="accordion-section">
+          <button class="accordion-header">
+            <span>Foundations</span>
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><a href="./articles/introduction-to-programming-and-c" data-slug="introduction-to-programming-and-c" class="nav-link">Introduction to Programming & C</a></li>
+              <li><a href="./articles/setting-up-environment" data-slug="setting-up-environment" class="nav-link">Setting Up Environment</a></li>
+              <li><a href="./articles/basic-syntax" data-slug="basic-syntax" class="nav-link">Basic Syntax</a></li>
+              <li><a href="./articles/data-types-in-c" data-slug="data-types-in-c" class="nav-link">Data Types in C</a></li>
+              <li><a href="./articles/variables-and-constants" data-slug="variables-and-constants" class="nav-link">Variables & Constants</a></li>
+              <li><a href="./articles/input-and-output" data-slug="input-and-output" class="nav-link">Input & Output</a></li>
+              <li><a href="./articles/operators-in-c-part-1" data-slug="operators-in-c-part-1" class="nav-link">Operators in C (Part 1)</a></li>
+              <li><a href="./articles/operators-in-c-part-2" data-slug="operators-in-c-part-2" class="nav-link">Operators in C (Part 2)</a></li>
+              <li><a href="./articles/decision-making" data-slug="decision-making" class="nav-link">Decision Making (if, else)</a></li>
+              <li><a href="./articles/switch-case" data-slug="switch-case" class="nav-link">Switch Case</a></li>
+              <li><a href="./articles/loops-part-1" data-slug="loops-part-1" class="nav-link">Loops (Part 1)</a></li>
+              <li><a href="./articles/loops-part-2" data-slug="loops-part-2" class="nav-link">Loops (Part 2)</a></li>
+              <li><a href="./articles/loop-control-statements" data-slug="loop-control-statements" class="nav-link">Loop Control Statements</a></li>
+              <li><a href="./articles/introduction-to-functions" data-slug="introduction-to-functions" class="nav-link">Introduction to Functions</a></li>
+              <li><a href="./articles/function-parameters" data-slug="function-parameters" class="nav-link">Function Parameters</a></li>
+              <li><a href="./articles/storage-classes" data-slug="storage-classes" class="nav-link">Storage Classes</a></li>
+              <li><a href="./articles/scope-and-lifetime" data-slug="scope-and-lifetime" class="nav-link">Scope & Lifetime</a></li>
+              <li><a href="./articles/recursion-part-1" data-slug="recursion-part-1" class="nav-link">Recursion (Part 1)</a></li>
+              <li><a href="./articles/recursion-part-2" data-slug="recursion-part-2" class="nav-link">Recursion (Part 2)</a></li>
+              <li><a href="./articles/header-files" data-slug="header-files" class="nav-link">Header Files</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Arrays & Strings -->
+        <div class="accordion-section">
+          <button class="accordion-header">
+            <span>Arrays & Strings</span>
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><a href="./articles/introduction-to-arrays" data-slug="introduction-to-arrays" class="nav-link">Introduction to Arrays</a></li>
+              <li><a href="./articles/array-operations" data-slug="array-operations" class="nav-link">Array Operations</a></li>
+              <li><a href="./articles/multi-dimensional-arrays" data-slug="multi-dimensional-arrays" class="nav-link">Multi-Dimensional Arrays</a></li>
+              <li><a href="./articles/2d-array-memory-mapping" data-slug="2d-array-memory-mapping" class="nav-link">2D Array Memory Mapping</a></li>
+              <li><a href="./articles/strings-in-c" data-slug="strings-in-c" class="nav-link">Strings in C</a></li>
+              <li><a href="./articles/string-functions" data-slug="string-functions" class="nav-link">String Functions</a></li>
+              <li><a href="./articles/more-string-functions" data-slug="more-string-functions" class="nav-link">More String Functions</a></li>
+              <li><a href="./articles/string-vs-character-arrays" data-slug="string-vs-character-arrays" class="nav-link">String vs Character Arrays</a></li>
+              <li><a href="./articles/array-of-strings" data-slug="array-of-strings" class="nav-link">Array of Strings</a></li>
+              <li><a href="./articles/passing-arrays-to-functions" data-slug="passing-arrays-to-functions" class="nav-link">Passing Arrays to Functions</a></li>
+              <li><a href="./articles/variable-length-arrays" data-slug="variable-length-arrays" class="nav-link">Variable Length Arrays (VLA)</a></li>
+              <li><a href="./articles/const-with-arrays" data-slug="const-with-arrays" class="nav-link">const with Arrays</a></li>
+              <li><a href="./articles/multidimensional-memory-concepts" data-slug="multidimensional-memory-concepts" class="nav-link">Multidimensional Memory Concepts</a></li>
+              <li><a href="./articles/limitations-of-arrays" data-slug="limitations-of-arrays" class="nav-link">Limitations of Arrays</a></li>
+              <li><a href="./articles/introduction-to-dynamic-memory" data-slug="introduction-to-dynamic-memory" class="nav-link">Introduction to Dynamic Memory</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pointers -->
+        <div class="accordion-section">
+          <button class="accordion-header">
+            <span>Pointers</span>
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><a href="./articles/introduction-to-pointers" data-slug="introduction-to-pointers" class="nav-link">Introduction to Pointers</a></li>
+              <li><a href="./articles/pointer-and-variables" data-slug="pointer-and-variables" class="nav-link">Pointer & Variables</a></li>
+              <li><a href="./articles/pointer-arithmetic" data-slug="pointer-arithmetic" class="nav-link">Pointer Arithmetic</a></li>
+              <li><a href="./articles/pointers-and-arrays" data-slug="pointers-and-arrays" class="nav-link">Pointers & Arrays</a></li>
+              <li><a href="./articles/pointers-and-strings" data-slug="pointers-and-strings" class="nav-link">Pointers & Strings</a></li>
+              <li><a href="./articles/double-pointers" data-slug="double-pointers" class="nav-link">Double Pointers</a></li>
+              <li><a href="./articles/pointers-to-functions" data-slug="pointers-to-functions" class="nav-link">Pointers to Functions</a></li>
+              <li><a href="./articles/pointers-to-structures" data-slug="pointers-to-structures" class="nav-link">Pointers to Structures</a></li>
+              <li><a href="./articles/null-pointer" data-slug="null-pointer" class="nav-link">NULL Pointer</a></li>
+              <li><a href="./articles/void-pointer" data-slug="void-pointer" class="nav-link">Void Pointer</a></li>
+              <li><a href="./articles/dynamic-memory-allocation" data-slug="dynamic-memory-allocation" class="nav-link">Dynamic Memory Allocation</a></li>
+              <li><a href="./articles/realloc-and-free" data-slug="realloc-and-free" class="nav-link">realloc() & free()</a></li>
+              <li><a href="./articles/dangling-pointers" data-slug="dangling-pointers" class="nav-link">Dangling Pointers</a></li>
+              <li><a href="./articles/memory-leaks" data-slug="memory-leaks" class="nav-link">Memory Leaks</a></li>
+              <li><a href="./articles/const-with-pointers" data-slug="const-with-pointers" class="nav-link">const with Pointers</a></li>
+              <li><a href="./articles/pointers-and-multi-dimensional-arrays" data-slug="pointers-and-multi-dimensional-arrays" class="nav-link">Pointers & Multi-dimensional Arrays</a></li>
+              <li><a href="./articles/function-returning-pointer" data-slug="function-returning-pointer" class="nav-link">Function Returning Pointer</a></li>
+              <li><a href="./articles/command-line-arguments" data-slug="command-line-arguments" class="nav-link">Command Line Arguments</a></li>
+              <li><a href="./articles/pointer-to-pointer-in-depth" data-slug="pointer-to-pointer-in-depth" class="nav-link">Pointer to Pointer in Depth</a></li>
+              <li><a href="./articles/memory-layout-of-c-program" data-slug="memory-layout-of-c-program" class="nav-link">Memory Layout of C Program</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Structures, Unions & Enums -->
+        <div class="accordion-section">
+          <button class="accordion-header">
+            <span>Structures, Unions & Enums</span>
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><a href="./articles/structures" data-slug="structures" class="nav-link">Structures</a></li>
+              <li><a href="./articles/nested-structures" data-slug="nested-structures" class="nav-link">Nested Structures</a></li>
+              <li><a href="./articles/array-of-structures" data-slug="array-of-structures" class="nav-link">Array of Structures</a></li>
+              <li><a href="./articles/pointer-to-structure" data-slug="pointer-to-structure" class="nav-link">Pointer to Structure</a></li>
+              <li><a href="./articles/self-referential-structures" data-slug="self-referential-structures" class="nav-link">Self-Referential Structures</a></li>
+              <li><a href="./articles/typedef" data-slug="typedef" class="nav-link">typedef</a></li>
+              <li><a href="./articles/unions" data-slug="unions" class="nav-link">Unions</a></li>
+              <li><a href="./articles/structure-vs-union" data-slug="structure-vs-union" class="nav-link">Structure vs Union</a></li>
+              <li><a href="./articles/enums" data-slug="enums" class="nav-link">Enums</a></li>
+              <li><a href="./articles/bit-fields" data-slug="bit-fields" class="nav-link">Bit Fields</a></li>
+              <li><a href="./articles/memory-alignment-and-padding" data-slug="memory-alignment-and-padding" class="nav-link">Memory Alignment & Padding</a></li>
+              <li><a href="./articles/packing-structures" data-slug="packing-structures" class="nav-link">Packing Structures</a></li>
+              <li><a href="./articles/flexible-array-member" data-slug="flexible-array-member" class="nav-link">Flexible Array Member</a></li>
+              <li><a href="./articles/practical-structure-design" data-slug="practical-structure-design" class="nav-link">Practical Structure Design</a></li>
+              <li><a href="./articles/data-abstraction-in-c" data-slug="data-abstraction-in-c" class="nav-link">Data Abstraction in C</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- File Handling -->
+        <div class="accordion-section">
+          <button class="accordion-header">
+            <span>File Handling</span>
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><a href="./articles/file-basics" data-slug="file-basics" class="nav-link">File Basics</a></li>
+              <li><a href="./articles/file-modes" data-slug="file-modes" class="nav-link">File Modes</a></li>
+              <li><a href="./articles/reading-files" data-slug="reading-files" class="nav-link">Reading Files</a></li>
+              <li><a href="./articles/writing-files" data-slug="writing-files" class="nav-link">Writing Files</a></li>
+              <li><a href="./articles/file-positioning" data-slug="file-positioning" class="nav-link">File Positioning</a></li>
+              <li><a href="./articles/error-handling-in-files" data-slug="error-handling-in-files" class="nav-link">Error Handling in Files</a></li>
+              <li><a href="./articles/binary-vs-text-files" data-slug="binary-vs-text-files" class="nav-link">Binary vs Text Files</a></li>
+              <li><a href="./articles/command-line-file-handling" data-slug="command-line-file-handling" class="nav-link">Command Line File Handling</a></li>
+              <li><a href="./articles/temporary-files" data-slug="temporary-files" class="nav-link">Temporary Files</a></li>
+              <li><a href="./articles/advanced-file-processing-patterns" data-slug="advanced-file-processing-patterns" class="nav-link">Advanced File Processing Patterns</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Advanced C & System-Level -->
+        <div class="accordion-section">
+          <button class="accordion-header">
+            <span>Advanced C & System-Level</span>
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><a href="./articles/preprocessor-directives" data-slug="preprocessor-directives" class="nav-link">Preprocessor Directives</a></li>
+              <li><a href="./articles/macros-in-depth" data-slug="macros-in-depth" class="nav-link">Macros in Depth</a></li>
+              <li><a href="./articles/conditional-compilation" data-slug="conditional-compilation" class="nav-link">Conditional Compilation</a></li>
+              <li><a href="./articles/inline-functions" data-slug="inline-functions" class="nav-link">Inline Functions (C99)</a></li>
+              <li><a href="./articles/volatile-keyword" data-slug="volatile-keyword" class="nav-link">volatile Keyword</a></li>
+              <li><a href="./articles/restrict-keyword" data-slug="restrict-keyword" class="nav-link">restrict Keyword</a></li>
+              <li><a href="./articles/memory-models-and-optimization" data-slug="memory-models-and-optimization" class="nav-link">Memory Models & Optimization</a></li>
+              <li><a href="./articles/debugging-techniques" data-slug="debugging-techniques" class="nav-link">Debugging Techniques</a></li>
+              <li><a href="./articles/assertions" data-slug="assertions" class="nav-link">Assertions</a></li>
+              <li><a href="./articles/writing-modular-programs" data-slug="writing-modular-programs" class="nav-link">Writing Modular Programs</a></li>
+              <li><a href="./articles/makefiles" data-slug="makefiles" class="nav-link">Makefiles</a></li>
+              <li><a href="./articles/static-vs-dynamic-linking" data-slug="static-vs-dynamic-linking" class="nav-link">Static vs Dynamic Linking</a></li>
+              <li><a href="./articles/compilation-stages-deep-dive" data-slug="compilation-stages-deep-dive" class="nav-link">Compilation Stages Deep Dive</a></li>
+              <li><a href="./articles/multithreading-basics" data-slug="multithreading-basics" class="nav-link">Multithreading Basics (POSIX)</a></li>
+              <li><a href="./articles/signals-in-c" data-slug="signals-in-c" class="nav-link">Signals in C</a></li>
+              <li><a href="./articles/process-creation" data-slug="process-creation" class="nav-link">Process Creation (fork)</a></li>
+              <li><a href="./articles/interprocess-communication-basics" data-slug="interprocess-communication-basics" class="nav-link">Interprocess Communication Basics</a></li>
+              <li><a href="./articles/c-standard-versions" data-slug="c-standard-versions" class="nav-link">C Standard Versions</a></li>
+              <li><a href="./articles/writing-efficient-c-code" data-slug="writing-efficient-c-code" class="nav-link">Writing Efficient C Code</a></li>
+              <li><a href="./articles/c-in-real-world-systems" data-slug="c-in-real-world-systems" class="nav-link">C in Real-World Systems</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content-area" id="contentArea">
+      <div class="article-container-wrapper">
+        <article class="article-body" id="articleContainer">
+          <p class="loading-text">Select a topic from the sidebar to begin.</p>
+        </article>
+
+        <!-- Bottom Article Navigation -->
+        <div class="article-navigation" id="articleNav" style="display: none;">
+          <button id="prevArticleBtn" class="article-nav-btn">
+            <span class="nav-label">← Previous</span>
+            <span class="nav-title" id="prevArticleTitle"></span>
+          </button>
+          <button id="nextArticleBtn" class="article-nav-btn">
+            <span class="nav-label">Next →</span>
+            <span class="nav-title" id="nextArticleTitle"></span>
+          </button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+          <p class="footer-text">
+            Presented by <span class="footer-brand-orange">Tabspace</span> <span class="footer-brand-green">Presentations</span> &copy; 2026. All rights reserved.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sidebar = document.getElementById('sidebar');
+      const logoToggle = document.getElementById('logoToggle');
+      const sidebarNav = document.getElementById('sidebarNav');
+      const sidebarOverlay = document.getElementById('sidebarOverlay');
+      const articleContainer = document.getElementById('articleContainer');
+      
+      // Navigation elements
+      const articleNav = document.getElementById('articleNav');
+      const prevBtn = document.getElementById('prevArticleBtn');
+      const nextBtn = document.getElementById('nextArticleBtn');
+      const prevTitle = document.getElementById('prevArticleTitle');
+      const nextTitle = document.getElementById('nextArticleTitle');
+
+      // Helper function to close sidebar on mobile
+      function closeMobileSidebar() {
+        if (window.innerWidth <= 768) {
+          sidebar.classList.remove('mobile-open');
+          sidebarOverlay.classList.remove('active');
+        }
+      }
+
+      // Toggle Sidebar behavior based on screen type
+      logoToggle.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          sidebar.classList.toggle('mobile-open');
+          sidebarOverlay.classList.toggle('active', sidebar.classList.contains('mobile-open'));
+        } else {
+          sidebar.classList.toggle('collapsed');
+        }
+      });
+
+      // Close mobile drawer when backdrop is clicked
+      sidebarOverlay.addEventListener('click', closeMobileSidebar);
+
+      // Accordion Toggle Behavior
+      const accordionHeaders = document.querySelectorAll('.accordion-header');
+      accordionHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+          const section = header.parentElement;
+          const isOpen = section.classList.contains('open');
+
+          // Close all sections
+          document.querySelectorAll('.accordion-section').forEach(sec => {
+            sec.classList.remove('open');
+          });
+
+          // Toggle current
+          if (!isOpen) {
+            section.classList.add('open');
+          }
+        });
+      });
+
+      // Helper to determine root path for fetching
+      function getAppRoot() {
+        const path = window.location.pathname;
+        const articlesIndex = path.indexOf('/articles');
+        if (articlesIndex !== -1) {
+          return path.substring(0, articlesIndex);
+        }
+        return path.endsWith('/') ? path.slice(0, -1) : path;
+      }
+
+      // Load article asynchronously
+      async function loadArticle(slug, pushToHistory = true) {
+        if (!slug) return;
+        
+        slug = slug.replace(/^.*\/articles\//, '').replace(/\.html$/, '');
+
+        const contentArea = document.getElementById('contentArea');
+        if (contentArea) contentArea.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        articleContainer.innerHTML = '<p class="loading-text">Loading topic content...</p>';
+        articleNav.style.display = 'none';
+
+        const appRoot = getAppRoot();
+        const fetchPath = `${appRoot}/articles/${slug}.html?t=${Date.now()}`;
+        const displayUrl = `${appRoot}/articles/${slug}`;
+
+        try {
+          const response = await fetch(fetchPath);
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+          }
+
+          const htmlContent = await response.text();
+          articleContainer.innerHTML = htmlContent;
+
+          if (pushToHistory) {
+            history.pushState({ slug }, '', displayUrl);
+          }
+
+          updateActiveLink(slug);
+          updateNavigationButtons(slug);
+
+        } catch (error) {
+          articleContainer.innerHTML = `
+            <div style="padding: 1rem 0;">
+              <h2 style="color: #ff6d00;">Topic Content Not Found</h2>
+              <p style="margin-top: 0.5rem;">Failed to load <code>articles/${slug}.html</code>.</p>
+            </div>
+          `;
+          console.error('Fetch Error:', error);
+        }
+      }
+
+      // Update Next/Previous buttons across all accordion sections
+      function updateNavigationButtons(currentSlug) {
+        const links = Array.from(sidebarNav.querySelectorAll('.nav-link'));
+        const currentIndex = links.findIndex(link => link.dataset.slug === currentSlug);
+
+        if (currentIndex === -1) {
+          articleNav.style.display = 'none';
+          return;
+        }
+
+        articleNav.style.display = 'flex';
+
+        if (currentIndex > 0) {
+          const prevLink = links[currentIndex - 1];
+          prevBtn.style.visibility = 'visible';
+          prevTitle.textContent = prevLink.textContent;
+          prevBtn.dataset.targetSlug = prevLink.dataset.slug;
+        } else {
+          prevBtn.style.visibility = 'hidden'; 
+        }
+
+        if (currentIndex < links.length - 1) {
+          const nextLink = links[currentIndex + 1];
+          nextBtn.style.visibility = 'visible';
+          nextTitle.textContent = nextLink.textContent;
+          nextBtn.dataset.targetSlug = nextLink.dataset.slug;
+        } else {
+          nextBtn.style.visibility = 'hidden';
+        }
+      }
+
+      prevBtn.addEventListener('click', () => {
+        if (prevBtn.dataset.targetSlug) loadArticle(prevBtn.dataset.targetSlug, true);
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (nextBtn.dataset.targetSlug) loadArticle(nextBtn.dataset.targetSlug, true);
+      });
+
+      function updateActiveLink(slug) {
+        const links = sidebarNav.querySelectorAll('.nav-link');
+        links.forEach(link => {
+          if (link.dataset.slug === slug) {
+            link.classList.add('active');
+            // Auto-expand parent section for active link
+            const parentSection = link.closest('.accordion-section');
+            if (parentSection) {
+              parentSection.classList.add('open');
+            }
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+
+      sidebarNav.addEventListener('click', (e) => {
+        const targetLink = e.target.closest('.nav-link');
+        if (!targetLink) return;
+
+        e.preventDefault();
+        const slug = targetLink.dataset.slug;
+        if (slug) {
+          loadArticle(slug, true);
+          closeMobileSidebar();
+        }
+      });
+
+      window.addEventListener('popstate', (e) => {
+        if (e.state && e.state.slug) {
+          loadArticle(e.state.slug, false);
+        } else {
+          resolveInitialRoute();
+        }
+      });
+
+      function resolveInitialRoute() {
+        const path = window.location.pathname;
+        const match = path.match(/\/articles\/([^\/\?#]+)/);
+
+        if (match && match[1]) {
+          loadArticle(match[1], false);
+        } else {
+          const firstLink = sidebarNav.querySelector('.nav-link');
+          if (firstLink && firstLink.dataset.slug) {
+            loadArticle(firstLink.dataset.slug, false);
+          }
+        }
+      }
+
+      resolveInitialRoute();
+    });
+  </script>
+</body>
+</html>

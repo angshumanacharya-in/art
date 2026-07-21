@@ -1,0 +1,356 @@
+<style>
+  /* Ensure full width expansion */
+  .topic-content-wrapper {
+    width: 100%;
+  }
+
+  .topic-content-wrapper h1 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+    text-align: center;
+    width: 100%;
+  }
+
+  .topic-content-wrapper h2 {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .topic-content-wrapper h3 {
+    font-size: 1.05rem;
+    color: var(--glow-color);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .topic-content-wrapper p {
+    color: #d1d5db;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper li {
+    color: #d1d5db;
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  /* Section Cards - Expanding Full Width */
+  .section-card {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .section-card:hover {
+    border-color: rgba(255, 109, 0, 0.4);
+    box-shadow: 0 0 12px -2px rgba(255, 109, 0, 0.15);
+  }
+
+  /* Learning Objectives Box */
+  .learning-card {
+    width: 100%;
+    background-color: rgba(34, 197, 94, 0.05);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .learning-card h2 {
+    color: var(--accent-color);
+  }
+
+  .learning-card ul {
+    margin-bottom: 0;
+  }
+
+  /* Table Design */
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0 0.5rem 0;
+    background-color: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .custom-table th {
+    background-color: #282828;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .custom-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: #d1d5db;
+  }
+
+  .custom-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Code Block */
+  .code-block {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    margin: 0;
+  }
+
+  .code-block code {
+    font-family: 'Consolas', 'Fira Code', 'Courier New', monospace !important;
+    color: var(--accent-color);
+    font-size: 0.95rem;
+  }
+
+  /* Inline Code Tags */
+  code {
+    background: #282828;
+    color: var(--glow-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: monospace !important;
+  }
+
+  /* Vertical Execution Flow Diagram */
+  .flow-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    background-color: var(--bg-main);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .flow-step {
+    background-color: var(--bg-card);
+    border: 1px solid var(--accent-color);
+    color: var(--text-main);
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .flow-step:hover {
+    transform: translateY(-2px);
+    border-color: var(--glow-color);
+  }
+
+  .flow-arrow {
+    color: var(--glow-color);
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  /* Summary Card */
+  .summary-card {
+    width: 100%;
+    background-color: rgba(255, 109, 0, 0.05);
+    border: 1px solid var(--glow-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .summary-card h2 {
+    color: var(--glow-color);
+  }
+
+  .summary-card p {
+    margin-bottom: 0;
+  }
+</style>
+
+<div class="topic-content-wrapper">
+  <h1>Introduction to Programming & C</h1>
+
+  <!-- Learning Objectives -->
+  <div class="learning-card">
+    <h2>Learning Objectives</h2>
+    <ul>
+      <li>Understand fundamental programming concepts.</li>
+      <li>Differentiate between low-level and high-level languages.</li>
+      <li>Explore the history and development of C.</li>
+      <li>Understand why C is recognized as the Mother Language.</li>
+      <li>Analyze the structure and components of a standard C program.</li>
+    </ul>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section-card">
+    <h2>1. What is Programming?</h2>
+    <p>Programming is the process of creating a sequence of instructions that direct a computer to execute specific operations. These instructions are written using specialized languages to construct software applications.</p>
+    
+    <p><strong>Common examples of computer programs:</strong></p>
+    <ul>
+      <li>Calculators & Financial Tools</li>
+      <li>Web Browsers (Chrome, Firefox)</li>
+      <li>Video Game Engines</li>
+      <li>Operating Systems</li>
+    </ul>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section-card">
+    <h2>2. Low-Level vs. High-Level Languages</h2>
+    <p>Programming languages fall into two primary categories based on hardware proximity and developer readability:</p>
+
+    <h3>Low-Level Languages</h3>
+    <ul>
+      <li>Interface directly with system memory and processor registers.</li>
+      <li>Deliver maximum execution speed and minimal memory footprint.</li>
+      <li>Complex syntax that is difficult for humans to read and write.</li>
+      <li><em>Examples:</em> Machine Code (Binary), Assembly Language.</li>
+    </ul>
+
+    <h3>High-Level Languages</h3>
+    <ul>
+      <li>Written in human-readable, English-like syntax.</li>
+      <li>Abstracted from physical hardware, allowing cross-platform portability.</li>
+      <li>Easier to design, debug, and maintain.</li>
+      <li><em>Examples:</em> C, C++, Java, Python.</li>
+    </ul>
+
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Low-Level Language</th>
+          <th>High-Level Language</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Readability</strong></td>
+          <td>Difficult / Complex</td>
+          <td>Easy / Human-Readable</td>
+        </tr>
+        <tr>
+          <td><strong>Execution Speed</strong></td>
+          <td>Extremely High</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td><strong>Hardware Access</strong></td>
+          <td>Direct</td>
+          <td>Indirect (Abstracted)</td>
+        </tr>
+        <tr>
+          <td><strong>Portability</strong></td>
+          <td>Low (Hardware Dependent)</td>
+          <td>High (Cross-Platform)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section-card">
+    <h2>3. History of C</h2>
+    <ul>
+      <li><strong>1960s:</strong> BCPL (Basic Combined Programming Language) was created.</li>
+      <li><strong>1970:</strong> Ken Thompson created the <strong>B</strong> language at Bell Labs.</li>
+      <li><strong>1972:</strong> <strong>Dennis Ritchie</strong> developed the <strong>C</strong> language at Bell Labs to re-implement the UNIX Operating System.</li>
+    </ul>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section-card">
+    <h2>4. Why is C Called the Mother Language?</h2>
+    <p>C introduced core syntax structures, static typing, and memory pointers that served as the architectural foundation for subsequent languages, including:</p>
+    <ul>
+      <li>C++ and C#</li>
+      <li>Java</li>
+      <li>Objective-C</li>
+      <li>Go & Rust</li>
+    </ul>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section-card">
+    <h2>5. Structure of a C Program</h2>
+    <p>Below is the code layout of a standard C program:</p>
+
+    <div class="code-block">
+      <pre><code>#include &lt;stdio.h&gt;
+
+int main() 
+{
+    printf("Hello, World!\n");
+    return 0;
+}</code></pre>
+    </div>
+
+    <h3>Component Analysis</h3>
+    <ul>
+      <li><code>#include &lt;stdio.h&gt;</code> — Preprocessor command including standard Input/Output library header functions.</li>
+      <li><code>int main()</code> — Main entry point function where execution begins.</li>
+      <li><code>printf(...)</code> — Built-in library function used to print output to the terminal.</li>
+      <li><code>return 0;</code> — Exits the main function, signaling zero errors to the Operating System.</li>
+    </ul>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section-card">
+    <h2>6. Program Execution Flow</h2>
+    <p>A C source file undergoes four main compilation phases to produce an executable file:</p>
+
+    <div class="flow-container">
+      <div class="flow-step">Source Code (.c)</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Preprocessing</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Compilation</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Linking</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Executable (.exe / .out)</div>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-card">
+    <h2>Summary</h2>
+    <p>C is a fundamental programming language created by Dennis Ritchie in 1972. Understanding C gives developers direct insight into system architecture, memory management, and code execution flow—skills essential for high-performance engineering.</p>
+  </div>
+</div>

@@ -1,0 +1,411 @@
+<style>
+  /* Ensure full width expansion */
+  .topic-content-wrapper {
+    width: 100%;
+  }
+
+  .topic-content-wrapper h1 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+    text-align: center;
+    width: 100%;
+  }
+
+  .topic-content-wrapper h2 {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .topic-content-wrapper h3 {
+    font-size: 1.05rem;
+    color: var(--glow-color);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .topic-content-wrapper p {
+    color: #d1d5db;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper li {
+    color: #d1d5db;
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  /* Section Cards - Expanding Full Width */
+  .section-card {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .section-card:hover {
+    border-color: rgba(255, 109, 0, 0.4);
+    box-shadow: 0 0 12px -2px rgba(255, 109, 0, 0.15);
+  }
+
+  /* Learning Objectives Box */
+  .learning-card {
+    width: 100%;
+    background-color: rgba(34, 197, 94, 0.05);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .learning-card h2 {
+    color: var(--accent-color);
+  }
+
+  .learning-card ul {
+    margin-bottom: 0;
+  }
+
+  /* Table Design */
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0 0.5rem 0;
+    background-color: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .custom-table th {
+    background-color: #282828;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .custom-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: #d1d5db;
+  }
+
+  .custom-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Code Block */
+  .code-block {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    margin: 0;
+  }
+
+  .code-block code {
+    font-family: 'Consolas', 'Fira Code', 'Courier New', monospace !important;
+    color: var(--accent-color);
+    font-size: 0.95rem;
+  }
+
+  /* Inline Code Tags */
+  code {
+    background: #282828;
+    color: var(--glow-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: monospace !important;
+  }
+
+  /* Vertical Execution Flow Diagram */
+  .flow-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    background-color: var(--bg-main);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .flow-step {
+    background-color: var(--bg-card);
+    border: 1px solid var(--accent-color);
+    color: var(--text-main);
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .flow-step:hover {
+    transform: translateY(-2px);
+    border-color: var(--glow-color);
+  }
+
+  .flow-arrow {
+    color: var(--glow-color);
+    font-size: 1rem;
+    line-height: 1;
+    font-family: monospace !important;
+  }
+
+  /* Summary Card */
+  .summary-card {
+    width: 100%;
+    background-color: rgba(255, 109, 0, 0.05);
+    border: 1px solid var(--glow-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .summary-card h2 {
+    color: var(--glow-color);
+  }
+
+  .summary-card p {
+    margin-bottom: 0;
+  }
+</style>
+
+<div class="topic-content-wrapper">
+  <h1>Mastering Git Stash & Local Cleanliness</h1>
+
+  <!-- Learning Objectives -->
+  <div class="learning-card">
+    <h2>Learning Objectives</h2>
+    <ul>
+      <li>Understand the concept and utility of stashing uncommitted work.</li>
+      <li>Master managing the Stash Stack using <code>apply</code>, <code>pop</code>, and <code>drop</code>.</li>
+      <li>Inspect, preview, and review stashed changes safely.</li>
+      <li>Clean untracked files and directories using <code>git clean</code> safely.</li>
+      <li>Apply best practices for context switching without creating incomplete commits.</li>
+    </ul>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section-card">
+    <h2>1. Introduction</h2>
+    <p>While working on a feature, you may need to switch branches or handle an urgent bug before your current work is complete. Instead of creating an incomplete commit, Git provides <strong>Git Stash</strong>, which temporarily saves your uncommitted changes. This lesson also covers <strong>Git Clean</strong>, a command used to remove unnecessary untracked files and keep your working directory organized.</p>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section-card">
+    <h2>2. What is Git Stash?</h2>
+    <p>Git Stash takes your uncommitted changes (both staged and unstaged), saves them on a temporary stack, and reverts your working directory back to the last clean <code>HEAD</code> commit state.</p>
+
+    <div class="flow-container">
+      <div class="flow-step">Dirty Working Directory</div>
+      <div class="flow-arrow">↓ (git stash)</div>
+      <div class="flow-step">Stored on Stash Stack</div>
+      <div class="flow-arrow">↓ (git stash apply / pop)</div>
+      <div class="flow-step">Restored Working Directory</div>
+    </div>
+
+    <p style="margin-top: 1.25rem;">This allows you to switch branches safely or work on hotfixes without losing your unfinished progress.</p>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section-card">
+    <h2>3. Creating & Viewing Stashes</h2>
+
+    <h3>Creating a Stash</h3>
+    <p>Save your active, uncommitted changes to the stash stack:</p>
+    <div class="code-block">
+      <pre><code>git stash</code></pre>
+    </div>
+
+    <h3>Viewing the Stash Stack</h3>
+    <p>List all saved stashes stored in your local repository:</p>
+    <div class="code-block">
+      <pre><code>git stash list</code></pre>
+    </div>
+
+    <p>Example Output:</p>
+    <div class="code-block">
+      <pre><code>stash@{0}: WIP on main
+stash@{1}: WIP on feature-login</code></pre>
+    </div>
+    <p>Each stash entry is indexed in a Last-In, First-Out (LIFO) stack format, with <code>stash@{0}</code> being the most recent.</p>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section-card">
+    <h2>4. Applying, Popping & Inspecting Stashes</h2>
+
+    <h3>Applying a Stash</h3>
+    <p>Re-apply the most recent stash without removing it from the stash stack:</p>
+    <div class="code-block">
+      <pre><code>git stash apply</code></pre>
+    </div>
+
+    <p>Target a specific stash in the stack:</p>
+    <div class="code-block">
+      <pre><code>git stash apply stash@{1}</code></pre>
+    </div>
+
+    <h3>Popping a Stash</h3>
+    <p>Restore the latest stash and immediately remove it from the stack in a single step:</p>
+    <div class="code-block">
+      <pre><code>git stash pop</code></pre>
+    </div>
+
+    <h3>Inspecting Stash Contents</h3>
+    <p>View a summary of modified files inside the top stash:</p>
+    <div class="code-block">
+      <pre><code>git stash show</code></pre>
+    </div>
+
+    <p>Inspect exact line-by-line diffs within the stash:</p>
+    <div class="code-block">
+      <pre><code>git stash show -p</code></pre>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section-card">
+    <h2>5. Removing Stashes</h2>
+    <p>Delete a specific stash from the stack manually:</p>
+    <div class="code-block">
+      <pre><code>git stash drop stash@{0}</code></pre>
+    </div>
+
+    <p>Wipe the entire stash stack completely:</p>
+    <div class="code-block">
+      <pre><code>git stash clear</code></pre>
+    </div>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section-card">
+    <h2>6. Cleaning Untracked Files with Git Clean</h2>
+    <p>Git Stash primarily manages tracked files. To remove untracked files and build artifacts cluttering your workspace, use <code>git clean</code>.</p>
+
+    <h3>1. Preview Mode (Dry Run)</h3>
+    <p>Always perform a dry run first to preview which files will be deleted:</p>
+    <div class="code-block">
+      <pre><code>git clean -n</code></pre>
+    </div>
+
+    <h3>2. Removing Untracked Files</h3>
+    <p>Permanently remove untracked files from the working directory:</p>
+    <div class="code-block">
+      <pre><code>git clean -f</code></pre>
+    </div>
+
+    <h3>3. Removing Untracked Files & Directories</h3>
+    <p>Recursively remove untracked files as well as untracked folders:</p>
+    <div class="code-block">
+      <pre><code>git clean -fd</code></pre>
+    </div>
+
+    <p style="margin-top: 1rem; color: var(--glow-color);"><strong>Warning:</strong> <code>git clean</code> operation is destructive and permanently deletes untracked files. Always preview with <code>-n</code> first!</p>
+  </div>
+
+  <!-- Key Commands Summary Table -->
+  <div class="section-card">
+    <h2>7. Key Commands Reference</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>git stash</code></td>
+          <td>Save uncommitted working changes to the stash stack</td>
+        </tr>
+        <tr>
+          <td><code>git stash list</code></td>
+          <td>Display all stashed snapshots on the stack</td>
+        </tr>
+        <tr>
+          <td><code>git stash apply</code></td>
+          <td>Restore stashed changes while keeping the stash on the stack</td>
+        </tr>
+        <tr>
+          <td><code>git stash pop</code></td>
+          <td>Restore stashed changes and remove them from the stack</td>
+        </tr>
+        <tr>
+          <td><code>git stash show -p</code></td>
+          <td>Inspect detailed line differences inside a stash</td>
+        </tr>
+        <tr>
+          <td><code>git stash drop &lt;stash_id&gt;</code></td>
+          <td>Delete a specific stash entry</td>
+        </tr>
+        <tr>
+          <td><code>git stash clear</code></td>
+          <td>Remove all saved stashes completely</td>
+        </tr>
+        <tr>
+          <td><code>git clean -n</code></td>
+          <td>Preview untracked files that would be deleted (Dry run)</td>
+        </tr>
+        <tr>
+          <td><code>git clean -f</code></td>
+          <td>Force delete untracked files permanently</td>
+        </tr>
+        <tr>
+          <td><code>git clean -fd</code></td>
+          <td>Force delete untracked files and directories permanently</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Best Practices Section -->
+  <div class="section-card">
+    <h2>8. Industry Best Practices</h2>
+    <ul>
+      <li>Use <code>git stash</code> to handle context switches rather than creating broken or temporary commits.</li>
+      <li>Review stash contents with <code>git stash show -p</code> before applying them back to your workspace.</li>
+      <li>Always execute a dry run using <code>git clean -n</code> prior to running destructive deletions.</li>
+      <li>Clear or drop stashes regularly after popping them to keep your stash stack clutter-free.</li>
+      <li>Avoid storing long-term work in the stash; create a proper feature branch if changes will be paused for long periods.</li>
+    </ul>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-card">
+    <h2>Summary</h2>
+    <p>In this lesson, you learned how to temporarily save unfinished work using Git Stash, restore it later with <code>git stash apply</code> or <code>git stash pop</code>, inspect and manage stashes, and clean untracked files using Git Clean. These commands help you switch tasks efficiently while keeping your working directory clean and organized.</p>
+  </div>
+</div>

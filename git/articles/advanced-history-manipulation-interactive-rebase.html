@@ -1,0 +1,359 @@
+<style>
+  /* Ensure full width expansion */
+  .topic-content-wrapper {
+    width: 100%;
+  }
+
+  .topic-content-wrapper h1 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+    text-align: center;
+    width: 100%;
+  }
+
+  .topic-content-wrapper h2 {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .topic-content-wrapper h3 {
+    font-size: 1.05rem;
+    color: var(--glow-color);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .topic-content-wrapper p {
+    color: #d1d5db;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper li {
+    color: #d1d5db;
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  /* Section Cards - Expanding Full Width */
+  .section-card {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .section-card:hover {
+    border-color: rgba(255, 109, 0, 0.4);
+    box-shadow: 0 0 12px -2px rgba(255, 109, 0, 0.15);
+  }
+
+  /* Learning Objectives Box */
+  .learning-card {
+    width: 100%;
+    background-color: rgba(34, 197, 94, 0.05);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .learning-card h2 {
+    color: var(--accent-color);
+  }
+
+  .learning-card ul {
+    margin-bottom: 0;
+  }
+
+  /* Table Design */
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0 0.5rem 0;
+    background-color: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .custom-table th {
+    background-color: #282828;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .custom-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: #d1d5db;
+  }
+
+  .custom-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Code Block */
+  .code-block {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    margin: 0;
+  }
+
+  .code-block code {
+    font-family: 'Consolas', 'Fira Code', 'Courier New', monospace !important;
+    color: var(--accent-color);
+    font-size: 0.95rem;
+  }
+
+  /* Inline Code Tags */
+  code {
+    background: #282828;
+    color: var(--glow-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: monospace !important;
+  }
+
+  /* Vertical Execution Flow Diagram */
+  .flow-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    background-color: var(--bg-main);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .flow-step {
+    background-color: var(--bg-card);
+    border: 1px solid var(--accent-color);
+    color: var(--text-main);
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .flow-step:hover {
+    transform: translateY(-2px);
+    border-color: var(--glow-color);
+  }
+
+  .flow-arrow {
+    color: var(--glow-color);
+    font-size: 1rem;
+    line-height: 1;
+    font-family: monospace !important;
+  }
+
+  /* Summary Card */
+  .summary-card {
+    width: 100%;
+    background-color: rgba(255, 109, 0, 0.05);
+    border: 1px solid var(--glow-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .summary-card h2 {
+    color: var(--glow-color);
+  }
+
+  .summary-card p {
+    margin-bottom: 0;
+  }
+</style>
+
+<div class="topic-content-wrapper">
+  <h1>Advanced History Manipulation (Interactive Rebase)</h1>
+
+  <!-- Learning Objectives -->
+  <div class="learning-card">
+    <h2>Learning Objectives</h2>
+    <ul>
+      <li>Understand the purpose and workflow of Interactive Rebase in Git.</li>
+      <li>Master core rebase instructions: <code>pick</code>, <code>reword</code>, <code>edit</code>, <code>squash</code>, and <code>drop</code>.</li>
+      <li>Combine multiple minor commits into a clean snapshot using squashing.</li>
+      <li>Learn how to break apart a single large commit into smaller, atomic commits.</li>
+      <li>Apply clean history manipulation best practices before pushing code upstream.</li>
+    </ul>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section-card">
+    <h2>1. Introduction</h2>
+    <p>As you develop a feature, you may create several small commits for testing, bug fixes, or corrections. Before sharing your work, Git allows you to rewrite local commit history using Interactive Rebase. This helps create a clean and meaningful commit history by combining, editing, reordering, or removing commits.</p>
+    <p style="color: var(--glow-color);"><strong>Note:</strong> Interactive Rebase should strictly be used on local commits that have not been pushed to a shared repository.</p>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section-card">
+    <h2>2. What is Interactive Rebase?</h2>
+    <p>Interactive Rebase allows you to open an editor session to modify, reorder, combine, or discard recent commits before they become part of the main project history.</p>
+
+    <p>To launch an interactive rebase session targeting the last 3 commits:</p>
+    <div class="code-block">
+      <pre><code>git rebase -i HEAD~3</code></pre>
+    </div>
+    <p>Git will open your configured text editor showing a list of targeted commits preceded by command keywords.</p>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section-card">
+    <h2>3. Interactive Rebase Commands</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Instruction</th>
+          <th>Purpose & Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>pick</code></td>
+          <td>Keep the commit as-is in the history.</td>
+        </tr>
+        <tr>
+          <td><code>reword</code></td>
+          <td>Keep the commit contents, but pause to edit the commit message.</td>
+        </tr>
+        <tr>
+          <td><code>edit</code></td>
+          <td>Pause the rebase sequence to modify the commit contents or split it.</td>
+        </tr>
+        <tr>
+          <td><code>squash</code></td>
+          <td>Meld the commit into the previous commit, combining their log messages.</td>
+        </tr>
+        <tr>
+          <td><code>drop</code></td>
+          <td>Completely remove the commit from the branch history.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section-card">
+    <h2>4. Squashing, Rewording & Dropping Commits</h2>
+
+    <h3>Squashing Commits</h3>
+    <p>Combine multiple small fixup commits into a single cohesive feature commit:</p>
+    <div class="flow-container">
+      <div class="flow-step">Commit A → Commit B → Commit C → Commit D</div>
+      <div class="flow-arrow">↓ (git rebase -i & squash)</div>
+      <div class="flow-step">Commit A → Commit B → Commit D'</div>
+    </div>
+
+    <h3>Rewording Commit Messages</h3>
+    <p>To update an old commit message, change <code>pick</code> to <code>reword</code> next to the targeted commit during the rebase session. Git will pause execution and prompt you for a new message.</p>
+
+    <h3>Dropping Commits</h3>
+    <p>To permanently delete an unwanted commit from history, change <code>pick</code> to <code>drop</code> (or simply delete the line) during the interactive rebase session.</p>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section-card">
+    <h2>5. Splitting a Single Commit</h2>
+    <p>If a single commit contains multiple unrelated changes, you can split it into separate atomic commits using this step-by-step workflow:</p>
+
+    <div class="flow-container">
+      <div class="flow-step">1. Launch git rebase -i HEAD~n</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">2. Mark the target commit as edit</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">3. Unstage the commit: git reset HEAD^</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">4. Stage & commit individual smaller changes</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">5. Complete rebase: git rebase --continue</div>
+    </div>
+  </div>
+
+  <!-- Key Commands Summary Table -->
+  <div class="section-card">
+    <h2>6. Key Commands Reference</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>git rebase -i HEAD~n</code></td>
+          <td>Start an interactive rebase for the last <em>n</em> commits</td>
+        </tr>
+        <tr>
+          <td><code>git rebase --continue</code></td>
+          <td>Resume the rebase sequence after completing an edit or split step</td>
+        </tr>
+        <tr>
+          <td><code>git rebase --abort</code></td>
+          <td>Safely cancel the active interactive rebase and restore original state</td>
+        </tr>
+        <tr>
+          <td><code>git reset HEAD^</code></td>
+          <td>Unstage the active commit when splitting a commit during edit mode</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Best Practices Section -->
+  <div class="section-card">
+    <h2>7. Industry Best Practices</h2>
+    <ul>
+      <li>Use interactive rebase locally to clean up commit history before opening pull requests.</li>
+      <li>Squash minor fixup or WIP (Work In Progress) commits into clean, descriptive feature commits.</li>
+      <li>Write clear, imperative commit messages across your cleaned timeline.</li>
+      <li>Never rewrite history that has already been pushed to shared team branches.</li>
+      <li>Always test your application suite thoroughly after completing a rebase.</li>
+    </ul>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-card">
+    <h2>Summary</h2>
+    <p>In this lesson, you learned how Interactive Rebase helps rewrite local commit history before sharing your work. You explored how to squash, reword, drop, and split commits using <code>git rebase -i</code>. These techniques produce a clean, organized commit history, making projects easier to review and maintain.</p>
+  </div>
+</div>

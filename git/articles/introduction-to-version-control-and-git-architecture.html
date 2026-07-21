@@ -1,0 +1,395 @@
+<style>
+  /* Ensure full width expansion */
+  .topic-content-wrapper {
+    width: 100%;
+  }
+
+  .topic-content-wrapper h1 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+    text-align: center;
+    width: 100%;
+  }
+
+  .topic-content-wrapper h2 {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .topic-content-wrapper h3 {
+    font-size: 1.05rem;
+    color: var(--glow-color);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .topic-content-wrapper p {
+    color: #d1d5db;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper li {
+    color: #d1d5db;
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  /* Section Cards - Expanding Full Width */
+  .section-card {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .section-card:hover {
+    border-color: rgba(255, 109, 0, 0.4);
+    box-shadow: 0 0 12px -2px rgba(255, 109, 0, 0.15);
+  }
+
+  /* Learning Objectives Box */
+  .learning-card {
+    width: 100%;
+    background-color: rgba(34, 197, 94, 0.05);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .learning-card h2 {
+    color: var(--accent-color);
+  }
+
+  .learning-card ul {
+    margin-bottom: 0;
+  }
+
+  /* Table Design */
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0 0.5rem 0;
+    background-color: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .custom-table th {
+    background-color: #282828;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .custom-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: #d1d5db;
+  }
+
+  .custom-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Code Block */
+  .code-block {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    margin: 0;
+  }
+
+  .code-block code {
+    font-family: 'Consolas', 'Fira Code', 'Courier New', monospace !important;
+    color: var(--accent-color);
+    font-size: 0.95rem;
+  }
+
+  /* Inline Code Tags */
+  code {
+    background: #282828;
+    color: var(--glow-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: monospace !important;
+  }
+
+  /* Vertical Execution Flow Diagram */
+  .flow-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    background-color: var(--bg-main);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .flow-step {
+    background-color: var(--bg-card);
+    border: 1px solid var(--accent-color);
+    color: var(--text-main);
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .flow-step:hover {
+    transform: translateY(-2px);
+    border-color: var(--glow-color);
+  }
+
+  .flow-arrow {
+    color: var(--glow-color);
+    font-size: 1rem;
+    line-height: 1;
+    font-family: monospace !important;
+  }
+
+  /* Summary Card */
+  .summary-card {
+    width: 100%;
+    background-color: rgba(255, 109, 0, 0.05);
+    border: 1px solid var(--glow-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .summary-card h2 {
+    color: var(--glow-color);
+  }
+
+  .summary-card p {
+    margin-bottom: 0;
+  }
+</style>
+
+<div class="topic-content-wrapper">
+  <h1>Introduction to Version Control & Git Architecture</h1>
+
+  <!-- Learning Objectives -->
+  <div class="learning-card">
+    <h2>Learning Objectives</h2>
+    <ul>
+      <li>Understand the core necessity of version control in software development.</li>
+      <li>Distinguish between Local, Centralized, and Distributed Version Control Systems.</li>
+      <li>Master Git's Three-Tree Architecture model.</li>
+      <li>Configure global user options and initialize a project repository.</li>
+      <li>Identify the primary file states throughout the Git lifecycle.</li>
+    </ul>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section-card">
+    <h2>1. Introduction</h2>
+    <p>Software development involves continuous changes to files and code. Without a proper system to track these changes, managing projects becomes difficult, especially when working in teams. Git is a Distributed Version Control System (DVCS) that helps developers track changes, collaborate efficiently, and restore previous versions whenever needed.</p>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section-card">
+    <h2>2. What is Version Control?</h2>
+    <p>A Version Control System (VCS) records changes made to files over time, allowing developers to:</p>
+    <ul>
+      <li>Track project history chronologically</li>
+      <li>Restore previous versions safely</li>
+      <li>Collaborate seamlessly with multiple developers</li>
+      <li>Prevent accidental data loss</li>
+    </ul>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section-card">
+    <h2>3. Types of Version Control Systems</h2>
+    
+    <h3>1. Local Version Control</h3>
+    <p>Stores project versions as simple patches on a single computer's local disk space.</p>
+
+    <h3>2. Centralized Version Control (CVCS)</h3>
+    <p>Uses a central server where all project versions are stored. Developers must connect directly to this single server to check out files and collaborate.</p>
+
+    <h3>3. Distributed Version Control (DVCS)</h3>
+    <p>Every developer clones a complete copy of the repository, including its full historical timeline, onto their local machine. Git is a Distributed Version Control System.</p>
+
+    <h3>4. Why Choose Git?</h3>
+    <p>Git is widely used across modern software engineering environments because it is:</p>
+    <ul>
+      <li>Fast and computationally efficient</li>
+      <li>Capable of working offline without constant server access</li>
+      <li>Built around lightweight branching and merging workflows</li>
+      <li>Enables easy collaboration and distributed contribution</li>
+      <li>Maintains complete project history cryptographically</li>
+    </ul>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section-card">
+    <h2>4. Git's Three-Tree Architecture</h2>
+    <p>Git manages files through three primary structural areas within your local machine:</p>
+
+    <div class="flow-container">
+      <div class="flow-step">Working Directory</div>
+      <div class="flow-arrow">↓ (git add)</div>
+      <div class="flow-step">Staging Area (Index)</div>
+      <div class="flow-arrow">↓ (git commit)</div>
+      <div class="flow-step">Local Repository</div>
+    </div>
+
+    <h3 style="margin-top: 1.5rem;">Tree Definitions</h3>
+    <ul>
+      <li><strong>Working Directory:</strong> The local file directory where you create, modify, and edit files.</li>
+      <li><strong>Staging Area (Index):</strong> A temporary hold area that previews selected changes before committing.</li>
+      <li><strong>Local Repository:</strong> The permanent location storing committed snapshots (commits) inside the hidden <code>.git</code> folder.</li>
+    </ul>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section-card">
+    <h2>5. Installation & Configuration</h2>
+    <p>Install Git for your operating system and verify the installation via the command line:</p>
+
+    <div class="code-block">
+      <pre><code>git --version</code></pre>
+    </div>
+    <p>If a version number is displayed, Git is installed successfully.</p>
+
+    <h3>Configuring User Identity</h3>
+    <p>Set your global user identity before creating commits:</p>
+
+    <div class="code-block">
+      <pre><code>git config --global user.name "Your Name"
+git config --global user.email "your@email.com"</code></pre>
+    </div>
+
+    <p>To inspect your current configuration settings:</p>
+    <div class="code-block">
+      <pre><code>git config --list</code></pre>
+    </div>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section-card">
+    <h2>6. Creating Your First Repository</h2>
+    <p>To start tracking a project with Git, navigate to your target folder and initialize a new repository:</p>
+
+    <div class="code-block">
+      <pre><code>mkdir MyProject
+cd MyProject
+git init</code></pre>
+    </div>
+
+    <p>This creates a hidden <code>.git</code> folder in the directory, initializing the local repository database.</p>
+  </div>
+
+  <!-- Section 7 -->
+  <div class="section-card">
+    <h2>7. File Lifecycle & States</h2>
+    <p>Files in a repository transition across four primary states as you work:</p>
+
+    <div class="flow-container">
+      <div class="flow-step">Untracked</div>
+      <div class="flow-arrow">↓ (git add)</div>
+      <div class="flow-step">Staged</div>
+      <div class="flow-arrow">↓ (git commit)</div>
+      <div class="flow-step">Committed</div>
+      <div class="flow-arrow">↓ (Edit file)</div>
+      <div class="flow-step">Modified</div>
+    </div>
+
+    <h3 style="margin-top: 1.5rem;">State Overview</h3>
+    <ul>
+      <li><strong>Untracked:</strong> The file is new in the working directory and Git is not tracking its changes.</li>
+      <li><strong>Modified:</strong> A tracked file has changes that have not yet been staged.</li>
+      <li><strong>Staged:</strong> Modified or new files added to the staging area, ready to be committed.</li>
+      <li><strong>Committed:</strong> File state is securely saved into the local repository snapshot.</li>
+    </ul>
+
+    <h3>Checking Repository Status</h3>
+    <p>Inspect the state of tracked and untracked files at any time using:</p>
+    <div class="code-block">
+      <pre><code>git status</code></pre>
+    </div>
+  </div>
+
+  <!-- Key Commands Summary Table -->
+  <div class="section-card">
+    <h2>8. Key Commands Reference</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>git --version</code></td>
+          <td>Check Git installation version</td>
+        </tr>
+        <tr>
+          <td><code>git config --global user.name</code></td>
+          <td>Set default username globally</td>
+        </tr>
+        <tr>
+          <td><code>git config --global user.email</code></td>
+          <td>Set default email globally</td>
+        </tr>
+        <tr>
+          <td><code>git config --list</code></td>
+          <td>View active Git configurations</td>
+        </tr>
+        <tr>
+          <td><code>git init</code></td>
+          <td>Initialize a new Git repository</td>
+        </tr>
+        <tr>
+          <td><code>git status</code></td>
+          <td>Check current status of the working tree</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-card">
+    <h2>Summary</h2>
+    <p>In this lesson, you learned the purpose of version control, the difference between centralized and distributed version control systems, Git's Three-Tree Architecture, how to install and configure Git, initialize a repository, and understand the basic file lifecycle. These concepts form the foundation for all future Git operations.</p>
+  </div>
+</div>

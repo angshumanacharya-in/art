@@ -1,0 +1,389 @@
+<style>
+  /* Ensure full width expansion */
+  .topic-content-wrapper {
+    width: 100%;
+  }
+
+  .topic-content-wrapper h1 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+    text-align: center;
+    width: 100%;
+  }
+
+  .topic-content-wrapper h2 {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .topic-content-wrapper h3 {
+    font-size: 1.05rem;
+    color: var(--glow-color);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .topic-content-wrapper p {
+    color: #d1d5db;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper li {
+    color: #d1d5db;
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  /* Section Cards - Expanding Full Width */
+  .section-card {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .section-card:hover {
+    border-color: rgba(255, 109, 0, 0.4);
+    box-shadow: 0 0 12px -2px rgba(255, 109, 0, 0.15);
+  }
+
+  /* Learning Objectives Box */
+  .learning-card {
+    width: 100%;
+    background-color: rgba(34, 197, 94, 0.05);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .learning-card h2 {
+    color: var(--accent-color);
+  }
+
+  .learning-card ul {
+    margin-bottom: 0;
+  }
+
+  /* Table Design */
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0 0.5rem 0;
+    background-color: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .custom-table th {
+    background-color: #282828;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .custom-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: #d1d5db;
+  }
+
+  .custom-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Code Block */
+  .code-block {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    margin: 0;
+  }
+
+  .code-block code {
+    font-family: 'Consolas', 'Fira Code', 'Courier New', monospace !important;
+    color: var(--accent-color);
+    font-size: 0.95rem;
+  }
+
+  /* Inline Code Tags */
+  code {
+    background: #282828;
+    color: var(--glow-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: monospace !important;
+  }
+
+  /* Vertical Execution Flow Diagram */
+  .flow-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    background-color: var(--bg-main);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .flow-step {
+    background-color: var(--bg-card);
+    border: 1px solid var(--accent-color);
+    color: var(--text-main);
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .flow-step:hover {
+    transform: translateY(-2px);
+    border-color: var(--glow-color);
+  }
+
+  .flow-arrow {
+    color: var(--glow-color);
+    font-size: 1rem;
+    line-height: 1;
+    font-family: monospace !important;
+  }
+
+  /* Summary Card */
+  .summary-card {
+    width: 100%;
+    background-color: rgba(255, 109, 0, 0.05);
+    border: 1px solid var(--glow-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .summary-card h2 {
+    color: var(--glow-color);
+  }
+
+  .summary-card p {
+    margin-bottom: 0;
+  }
+</style>
+
+<div class="topic-content-wrapper">
+  <h1>Cherry-Picking & Debugging History</h1>
+
+  <!-- Learning Objectives -->
+  <div class="learning-card">
+    <h2>Learning Objectives</h2>
+    <ul>
+      <li>Understand the concept and selective utility of <code>git cherry-pick</code>.</li>
+      <li>Apply individual commits from one branch onto another without full branch merges.</li>
+      <li>Handle and resolve conflicts during cherry-picking operations.</li>
+      <li>Understand how <code>git bisect</code> uses binary search algorithms to isolate bugs.</li>
+      <li>Execute a complete bisect session from initial bug isolation to session cleanup.</li>
+    </ul>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section-card">
+    <h2>1. Introduction</h2>
+    <p>Sometimes you need to copy a specific commit from one branch to another without merging the entire branch. In other cases, you may need to find the exact commit that introduced a bug. Git provides two powerful tools for these tasks:</p>
+    <ul>
+      <li><strong>Git Cherry-Pick:</strong> Copies selected commits to another branch.</li>
+      <li><strong>Git Bisect:</strong> Uses binary search to quickly locate the commit that introduced a bug.</li>
+    </ul>
+    <p>These commands are especially useful in large projects with multiple branches and a long commit history.</p>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section-card">
+    <h2>2. What is Git Cherry-Pick?</h2>
+    <p>Git Cherry-Pick applies the exact patch introduced by a specific commit from another branch onto your currently checked-out branch, generating a new commit with its own unique SHA hash.</p>
+
+    <div class="flow-container">
+      <div class="flow-step">Feature Branch (Commits D & E)</div>
+      <div class="flow-arrow">↓ (git cherry-pick D)</div>
+      <div class="flow-step">Target Branch (Commit C)</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Target Branch Updated (Commit D')</div>
+    </div>
+
+    <p style="margin-top: 1.25rem;">Instead of merging the entire feature branch (including commit E), only the specific changes from commit D are copied over.</p>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section-card">
+    <h2>3. Executing a Cherry-Pick</h2>
+    <p>Locate the SHA hash of the target commit using logs:</p>
+    <div class="code-block">
+      <pre><code>git log --oneline</code></pre>
+    </div>
+
+    <p>Switch to your destination branch and cherry-pick the commit:</p>
+    <div class="code-block">
+      <pre><code>git cherry-pick a1b2c3d</code></pre>
+    </div>
+
+    <h3>Handling Cherry-Pick Conflicts</h3>
+    <p>If the target commit modifies code that conflicts with your active branch state:</p>
+
+    <div class="flow-container">
+      <div class="flow-step">1. Conflict occurs during cherry-pick</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">2. Resolve conflicting files manually</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">3. Stage resolved files: git add &lt;file&gt;</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">4. Resume operation: git cherry-pick --continue</div>
+    </div>
+
+    <p style="margin-top: 1.25rem;">To abort the cherry-pick and revert your workspace to its previous state:</p>
+    <div class="code-block">
+      <pre><code>git cherry-pick --abort</code></pre>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section-card">
+    <h2>4. What is Git Bisect?</h2>
+    <p>Git Bisect automates regression testing by using a binary search algorithm through your project's commit log history to locate the exact commit that introduced a bug.</p>
+
+    <p>Instead of manually checking out and testing hundreds of commits one by one, Git bisect divides the search space in half at each iteration, dramatically speeding up bug isolation.</p>
+
+    <div class="flow-container">
+      <div class="flow-step">Good Base Commit (A) ──► Bad Tip Commit (G)</div>
+      <div class="flow-arrow">↓ (Test Midpoint Commit D)</div>
+      <div class="flow-step">Bisect Evaluates Result & Halves Space</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">First Bad Commit Identified</div>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section-card">
+    <h2>5. Executing a Git Bisect Session</h2>
+
+    <h3>1. Start Bisect & Mark Endpoints</h3>
+    <p>Begin the bisect mode, flag the current broken state as bad, and provide a known historical working commit hash as good:</p>
+    <div class="code-block">
+      <pre><code>git bisect start
+git bisect bad
+git bisect good a1b2c3d</code></pre>
+    </div>
+
+    <h3>2. Testing Commits Iteratively</h3>
+    <p>Git automatically checks out a commit in the middle of the search space. Test your application, then report the result to Git:</p>
+
+    <p>If the bug exists in the current checkout:</p>
+    <div class="code-block">
+      <pre><code>git bisect bad</code></pre>
+    </div>
+
+    <p>If the bug is absent and code works correctly:</p>
+    <div class="code-block">
+      <pre><code>git bisect good</code></pre>
+    </div>
+
+    <p>Git continues testing midpoints until it pinpoints the exact commit responsible for the regression.</p>
+
+    <h3>3. Ending the Session</h3>
+    <p>Once Git isolates the bad commit, clean up and return to your original working branch:</p>
+    <div class="code-block">
+      <pre><code>git bisect reset</code></pre>
+    </div>
+  </div>
+
+  <!-- Key Commands Summary Table -->
+  <div class="section-card">
+    <h2>6. Key Commands Reference</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>git cherry-pick &lt;commit&gt;</code></td>
+          <td>Apply a specific commit patch onto current branch</td>
+        </tr>
+        <tr>
+          <td><code>git cherry-pick --continue</code></td>
+          <td>Resume cherry-picking after resolving a conflict</td>
+        </tr>
+        <tr>
+          <td><code>git cherry-pick --abort</code></td>
+          <td>Cancel the cherry-pick sequence and revert workspace</td>
+        </tr>
+        <tr>
+          <td><code>git bisect start</code></td>
+          <td>Initialize a binary search debugging session</td>
+        </tr>
+        <tr>
+          <td><code>git bisect bad</code></td>
+          <td>Mark the currently checked-out commit as broken</td>
+        </tr>
+        <tr>
+          <td><code>git bisect good &lt;commit&gt;</code></td>
+          <td>Mark a specific commit hash as functional/working</td>
+        </tr>
+        <tr>
+          <td><code>git bisect reset</code></td>
+          <td>Exit bisect mode and return to original branch state</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Best Practices Section -->
+  <div class="section-card">
+    <h2>7. Industry Best Practices</h2>
+    <ul>
+      <li>Use Cherry-Pick to port isolated hotfixes or single features across release branches.</li>
+      <li>Avoid repeatedly cherry-picking identical commits across branches to prevent duplicating commit patches in history.</li>
+      <li>Use Git Bisect whenever regression causes are unknown across a long commit timeline.</li>
+      <li>Always run your automated test suite thoroughly after cherry-picking a commit.</li>
+      <li>Always execute <code>git bisect reset</code> after completing a debugging session to restore normal working tree state.</li>
+    </ul>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-card">
+    <h2>Summary</h2>
+    <p>In this lesson, you learned how Git Cherry-Pick copies individual commits from one branch to another without merging the entire branch. You also explored Git Bisect, which uses an efficient binary search algorithm to locate the exact commit that introduced a bug. Together, these tools simplify maintenance, debugging, and selective code integration in Git projects.</p>
+  </div>
+</div>

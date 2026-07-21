@@ -1,0 +1,350 @@
+<style>
+  /* Ensure full width expansion */
+  .topic-content-wrapper {
+    width: 100%;
+  }
+
+  .topic-content-wrapper h1 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+    text-align: center;
+    width: 100%;
+  }
+
+  .topic-content-wrapper h2 {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .topic-content-wrapper h3 {
+    font-size: 1.05rem;
+    color: var(--glow-color);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .topic-content-wrapper p {
+    color: #d1d5db;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper li {
+    color: #d1d5db;
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  /* Section Cards - Expanding Full Width */
+  .section-card {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .section-card:hover {
+    border-color: rgba(255, 109, 0, 0.4);
+    box-shadow: 0 0 12px -2px rgba(255, 109, 0, 0.15);
+  }
+
+  /* Learning Objectives Box */
+  .learning-card {
+    width: 100%;
+    background-color: rgba(34, 197, 94, 0.05);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .learning-card h2 {
+    color: var(--accent-color);
+  }
+
+  .learning-card ul {
+    margin-bottom: 0;
+  }
+
+  /* Table Design */
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0 0.5rem 0;
+    background-color: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .custom-table th {
+    background-color: #282828;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .custom-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: #d1d5db;
+  }
+
+  .custom-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Code Block */
+  .code-block {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    margin: 0;
+  }
+
+  .code-block code {
+    font-family: 'Consolas', 'Fira Code', 'Courier New', monospace !important;
+    color: var(--accent-color);
+    font-size: 0.95rem;
+  }
+
+  /* Inline Code Tags */
+  code {
+    background: #282828;
+    color: var(--glow-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: monospace !important;
+  }
+
+  /* Vertical Execution Flow Diagram */
+  .flow-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    background-color: var(--bg-main);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .flow-step {
+    background-color: var(--bg-card);
+    border: 1px solid var(--accent-color);
+    color: var(--text-main);
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .flow-step:hover {
+    transform: translateY(-2px);
+    border-color: var(--glow-color);
+  }
+
+  .flow-arrow {
+    color: var(--glow-color);
+    font-size: 1rem;
+    line-height: 1;
+    font-family: monospace !important;
+  }
+
+  /* Summary Card */
+  .summary-card {
+    width: 100%;
+    background-color: rgba(255, 109, 0, 0.05);
+    border: 1px solid var(--glow-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .summary-card h2 {
+    color: var(--glow-color);
+  }
+
+  .summary-card p {
+    margin-bottom: 0;
+  }
+</style>
+
+<div class="topic-content-wrapper">
+  <h1>Merging & Basic Conflict Resolution</h1>
+
+  <!-- Learning Objectives -->
+  <div class="learning-card">
+    <h2>Learning Objectives</h2>
+    <ul>
+      <li>Understand how Git integrates changes from different development branches.</li>
+      <li>Differentiate between Fast-Forward merges and Three-Way merges.</li>
+      <li>Master executing merges safely into target branches.</li>
+      <li>Identify the core causes of merge conflicts and read conflict markers.</li>
+      <li>Follow a step-by-step workflow to resolve conflicts and commit clean merges.</li>
+    </ul>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section-card">
+    <h2>1. Introduction</h2>
+    <p>After developing features on separate branches, those changes need to be combined into the main project. Git provides merging to integrate branches while preserving project history. Sometimes, changes made in different branches conflict with each other, requiring manual resolution. In this lesson, you'll learn how to merge branches and resolve common merge conflicts.</p>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section-card">
+    <h2>2. What is Merging?</h2>
+    <p>Merging combines the commits and changes from a feature branch into a target branch (such as <code>main</code>), unifying independent streams of work.</p>
+
+    <div class="flow-container">
+      <div class="flow-step">Feature Branch (Commits D → E)</div>
+      <div class="flow-arrow">↓ (git merge)</div>
+      <div class="flow-step">Target Branch (Commit C)</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Integrated Timeline / Merge Commit (M)</div>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section-card">
+    <h2>3. Types of Merges</h2>
+    
+    <h3>1. Fast-Forward Merge</h3>
+    <p>Occurs when the target branch has no new commits added after the feature branch was created. Git simply moves the branch pointer forward to the latest commit of the feature branch without creating a separate merge commit.</p>
+
+    <h3>2. Three-Way Merge</h3>
+    <p>Occurs when both the target branch and the feature branch have diverged with new, independent commits. Git evaluates a common ancestor commit alongside the tip of both branches to construct a new <strong>Merge Commit</strong> combining both histories.</p>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section-card">
+    <h2>4. Executing a Merge</h2>
+    <p>To integrate changes from a feature branch into your target branch, follow this process:</p>
+
+    <p>First, switch to your destination target branch:</p>
+    <div class="code-block">
+      <pre><code>git switch main</code></pre>
+    </div>
+
+    <p>Execute the merge command specifying the source branch:</p>
+    <div class="code-block">
+      <pre><code>git merge feature-login</code></pre>
+    </div>
+
+    <p>Git will automatically evaluate history and perform either a Fast-Forward or Three-Way merge.</p>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section-card">
+    <h2>5. Understanding Merge Conflicts</h2>
+    <p>A merge conflict occurs when Git cannot automatically reconcile differences between competing changes—such as when the exact same line of a file is modified differently across both branches.</p>
+
+    <h3>Conflict Marker Anatomy</h3>
+    <p>When a conflict happens, Git inserts conflict marker indicators directly into the affected files:</p>
+
+    <div class="code-block">
+      <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Hello World (Your current branch changes)
+=======
+Hello Git (Incoming feature branch changes)
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-login</code></pre>
+    </div>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section-card">
+    <h2>6. Resolving Merge Conflicts Step-by-Step</h2>
+    <p>Follow this structured flow to resolve conflicts cleanly:</p>
+
+    <div class="flow-container">
+      <div class="flow-step">1. Run git status to find conflicted files</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">2. Open files & edit conflict markers manually</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">3. Stage resolved file: git add &lt;file&gt;</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">4. Complete merge: git commit</div>
+    </div>
+  </div>
+
+  <!-- Key Commands Summary Table -->
+  <div class="section-card">
+    <h2>7. Key Commands Reference</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>git merge &lt;branch&gt;</code></td>
+          <td>Merge specified branch into the current branch</td>
+        </tr>
+        <tr>
+          <td><code>git status</code></td>
+          <td>View unresolved merge conflicts and state</td>
+        </tr>
+        <tr>
+          <td><code>git add &lt;file&gt;</code></td>
+          <td>Stage files after manually resolving conflict markers</td>
+        </tr>
+        <tr>
+          <td><code>git commit</code></td>
+          <td>Complete the merge commit after staging resolved files</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Best Practices Section -->
+  <div class="section-card">
+    <h2>8. Industry Best Practices</h2>
+    <ul>
+      <li>Pull the latest upstream changes before initiating a merge.</li>
+      <li>Merge feature branches frequently to keep divergence minimal and reduce conflict size.</li>
+      <li>Keep individual commits small, focused, and single-purpose.</li>
+      <li>Inspect conflict markers carefully rather than blindly deleting surrounding code.</li>
+      <li>Run your test suite immediately following every merge to verify code integrity.</li>
+    </ul>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-card">
+    <h2>Summary</h2>
+    <p>In this lesson, you learned how Git combines branches using Fast-Forward and Three-Way merges. You also explored how merge conflicts occur when the same code is modified in multiple branches and learned the steps to resolve those conflicts using <code>git status</code>, <code>git add</code>, and <code>git commit</code>. Mastering merging is essential for effective collaboration and maintaining a clean project history.</p>
+  </div>
+</div>

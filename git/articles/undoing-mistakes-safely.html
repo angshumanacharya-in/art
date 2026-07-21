@@ -1,0 +1,391 @@
+<style>
+  /* Ensure full width expansion */
+  .topic-content-wrapper {
+    width: 100%;
+  }
+
+  .topic-content-wrapper h1 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+    text-align: center;
+    width: 100%;
+  }
+
+  .topic-content-wrapper h2 {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .topic-content-wrapper h3 {
+    font-size: 1.05rem;
+    color: var(--glow-color);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .topic-content-wrapper p {
+    color: #d1d5db;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper li {
+    color: #d1d5db;
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  /* Section Cards - Expanding Full Width */
+  .section-card {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .section-card:hover {
+    border-color: rgba(255, 109, 0, 0.4);
+    box-shadow: 0 0 12px -2px rgba(255, 109, 0, 0.15);
+  }
+
+  /* Learning Objectives Box */
+  .learning-card {
+    width: 100%;
+    background-color: rgba(34, 197, 94, 0.05);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .learning-card h2 {
+    color: var(--accent-color);
+  }
+
+  .learning-card ul {
+    margin-bottom: 0;
+  }
+
+  /* Table Design */
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0 0.5rem 0;
+    background-color: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .custom-table th {
+    background-color: #282828;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .custom-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: #d1d5db;
+  }
+
+  .custom-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Code Block */
+  .code-block {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    margin: 0;
+  }
+
+  .code-block code {
+    font-family: 'Consolas', 'Fira Code', 'Courier New', monospace !important;
+    color: var(--accent-color);
+    font-size: 0.95rem;
+  }
+
+  /* Inline Code Tags */
+  code {
+    background: #282828;
+    color: var(--glow-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: monospace !important;
+  }
+
+  /* Vertical Execution Flow Diagram */
+  .flow-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    background-color: var(--bg-main);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .flow-step {
+    background-color: var(--bg-card);
+    border: 1px solid var(--accent-color);
+    color: var(--text-main);
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .flow-step:hover {
+    transform: translateY(-2px);
+    border-color: var(--glow-color);
+  }
+
+  .flow-arrow {
+    color: var(--glow-color);
+    font-size: 1rem;
+    line-height: 1;
+    font-family: monospace !important;
+  }
+
+  /* Summary Card */
+  .summary-card {
+    width: 100%;
+    background-color: rgba(255, 109, 0, 0.05);
+    border: 1px solid var(--glow-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .summary-card h2 {
+    color: var(--glow-color);
+  }
+
+  .summary-card p {
+    margin-bottom: 0;
+  }
+</style>
+
+<div class="topic-content-wrapper">
+  <h1>Undoing Mistakes Safely</h1>
+
+  <!-- Learning Objectives -->
+  <div class="learning-card">
+    <h2>Learning Objectives</h2>
+    <ul>
+      <li>Differentiate between destructive and non-destructive undo operations.</li>
+      <li>Unstage staged files safely using <code>git restore --staged</code>.</li>
+      <li>Discard local modifications in the working directory using <code>git restore</code>.</li>
+      <li>Amend the most recent local commit using <code>git commit --amend</code>.</li>
+      <li>Safely undo public shared commits without destroying repository history using <code>git revert</code>.</li>
+    </ul>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section-card">
+    <h2>1. Introduction</h2>
+    <p>Mistakes are inevitable during software development. You may stage the wrong file, modify code incorrectly, or publish a commit containing a bug. Git provides several commands to undo changes safely without losing important work. In this lesson, you'll learn the difference between destructive and non-destructive undo operations and how to use them effectively.</p>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section-card">
+    <h2>2. Destructive vs. Non-Destructive Operations</h2>
+    <p>Understanding the impact of undo commands is critical to avoiding accidental data loss in Git:</p>
+
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Operation Type</th>
+          <th>Characteristics & Risk</th>
+          <th>Examples</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Non-Destructive</strong></td>
+          <td>Preserves project history and timeline. Safe to use on shared public repositories.</td>
+          <td><code>git restore --staged</code>, <code>git revert</code>, <code>git commit --amend</code></td>
+        </tr>
+        <tr>
+          <td><strong>Destructive</strong></td>
+          <td>Permanently discards uncommitted changes or rewrites history. Use with extreme caution!</td>
+          <td><code>git restore &lt;file&gt;</code>, <code>git reset --hard</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section-card">
+    <h2>3. Unstaging & Discarding Changes</h2>
+
+    <h3>Unstaging Staged Files</h3>
+    <p>If you accidentally staged a file using <code>git add</code>, move it back to the modified state without altering its contents:</p>
+    <div class="code-block">
+      <pre><code>git restore --staged filename</code></pre>
+    </div>
+
+    <h3>Discarding Local Modifications</h3>
+    <p>Discard uncommitted local edits made to a tracked file and restore it to the last committed version:</p>
+    <div class="code-block">
+      <pre><code>git restore filename</code></pre>
+    </div>
+    <p style="color: var(--glow-color);"><strong>Warning:</strong> Discarding local edits permanently removes uncommitted code from your disk space!</p>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section-card">
+    <h2>4. Amending the Last Commit</h2>
+    <p>If you forgot to include a file or made a typo in your commit message, amend your most recent commit instead of creating a brand new one:</p>
+
+    <div class="code-block">
+      <pre><code>git commit --amend</code></pre>
+    </div>
+
+    <p>To update only the commit message without modifying code:</p>
+    <div class="code-block">
+      <pre><code>git commit --amend -m "Updated commit message"</code></pre>
+    </div>
+    <p><em>Note: Only amend commits that are local and have not yet been pushed to a remote server.</em></p>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section-card">
+    <h2>5. Reverting Public Commits Safely</h2>
+    <p>When a commit containing an issue has already been pushed to a shared remote repository, do not delete it from history. Use <code>git revert</code> to reverse the changes safely.</p>
+
+    <div class="code-block">
+      <pre><code>git revert &lt;commit-hash&gt;</code></pre>
+    </div>
+
+    <p>Git creates a brand new inverse commit that cancels out the changes introduced by the target commit while preserving full historical transparency:</p>
+
+    <div class="flow-container">
+      <div class="flow-step">Commit A → Commit B → Commit C</div>
+      <div class="flow-arrow">↓ (git revert Commit C)</div>
+      <div class="flow-step">Commit D (Inverse commit cancelling C)</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Safe Shared History Maintained</div>
+    </div>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section-card">
+    <h2>6. Choosing the Right Command</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Scenario / Goal</th>
+          <th>Recommended Command</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Remove a file from staging area</td>
+          <td><code>git restore --staged &lt;file&gt;</code></td>
+        </tr>
+        <tr>
+          <td>Discard local modifications in working tree</td>
+          <td><code>git restore &lt;file&gt;</code></td>
+        </tr>
+        <tr>
+          <td>Modify code/message of the latest local commit</td>
+          <td><code>git commit --amend</code></td>
+        </tr>
+        <tr>
+          <td>Undo a commit that has been pushed to a remote repository</td>
+          <td><code>git revert &lt;commit&gt;</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Key Commands Summary Table -->
+  <div class="section-card">
+    <h2>7. Key Commands Reference</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>git restore --staged &lt;file&gt;</code></td>
+          <td>Unstage a file without losing local edits</td>
+        </tr>
+        <tr>
+          <td><code>git restore &lt;file&gt;</code></td>
+          <td>Discard uncommitted local edits and revert file state</td>
+        </tr>
+        <tr>
+          <td><code>git commit --amend</code></td>
+          <td>Modify staged files/message of the latest commit</td>
+        </tr>
+        <tr>
+          <td><code>git commit --amend -m "message"</code></td>
+          <td>Quickly update the message of the latest commit</td>
+        </tr>
+        <tr>
+          <td><code>git revert &lt;commit&gt;</code></td>
+          <td>Safely create an inverse commit to undo public changes</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Best Practices Section -->
+  <div class="section-card">
+    <h2>8. Industry Best Practices</h2>
+    <ul>
+      <li>Use <code>git restore --staged</code> to fix staging mistakes without touching code edits.</li>
+      <li>Avoid discarding working changes unless you are 100% certain they are no longer needed.</li>
+      <li>Use <code>git commit --amend</code> strictly for local commits that have not been pushed upstream.</li>
+      <li>Use <code>git revert</code> for commits that have already been published to team repositories.</li>
+      <li>Always check <code>git status</code> before and after performing undo operations to verify your working tree.</li>
+    </ul>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-card">
+    <h2>Summary</h2>
+    <p>In this lesson, you learned how to safely undo mistakes using Git. You explored how to unstage files with <code>git restore --staged</code>, discard unwanted changes using <code>git restore</code>, modify the latest commit with <code>git commit --amend</code>, and safely reverse published commits using <code>git revert</code>. Understanding these commands helps you recover from mistakes while maintaining a reliable project history.</p>
+  </div>
+</div>

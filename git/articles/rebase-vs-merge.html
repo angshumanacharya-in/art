@@ -1,0 +1,392 @@
+<style>
+  /* Ensure full width expansion */
+  .topic-content-wrapper {
+    width: 100%;
+  }
+
+  .topic-content-wrapper h1 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+    text-align: center;
+    width: 100%;
+  }
+
+  .topic-content-wrapper h2 {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .topic-content-wrapper h3 {
+    font-size: 1.05rem;
+    color: var(--glow-color);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .topic-content-wrapper p {
+    color: #d1d5db;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper li {
+    color: #d1d5db;
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  /* Section Cards - Expanding Full Width */
+  .section-card {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .section-card:hover {
+    border-color: rgba(255, 109, 0, 0.4);
+    box-shadow: 0 0 12px -2px rgba(255, 109, 0, 0.15);
+  }
+
+  /* Learning Objectives Box */
+  .learning-card {
+    width: 100%;
+    background-color: rgba(34, 197, 94, 0.05);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .learning-card h2 {
+    color: var(--accent-color);
+  }
+
+  .learning-card ul {
+    margin-bottom: 0;
+  }
+
+  /* Table Design */
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0 0.5rem 0;
+    background-color: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .custom-table th {
+    background-color: #282828;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .custom-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: #d1d5db;
+  }
+
+  .custom-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Code Block */
+  .code-block {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    margin: 0;
+  }
+
+  .code-block code {
+    font-family: 'Consolas', 'Fira Code', 'Courier New', monospace !important;
+    color: var(--accent-color);
+    font-size: 0.95rem;
+  }
+
+  /* Inline Code Tags */
+  code {
+    background: #282828;
+    color: var(--glow-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: monospace !important;
+  }
+
+  /* Vertical Execution Flow Diagram */
+  .flow-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    background-color: var(--bg-main);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .flow-step {
+    background-color: var(--bg-card);
+    border: 1px solid var(--accent-color);
+    color: var(--text-main);
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .flow-step:hover {
+    transform: translateY(-2px);
+    border-color: var(--glow-color);
+  }
+
+  .flow-arrow {
+    color: var(--glow-color);
+    font-size: 1rem;
+    line-height: 1;
+    font-family: monospace !important;
+  }
+
+  /* Summary Card */
+  .summary-card {
+    width: 100%;
+    background-color: rgba(255, 109, 0, 0.05);
+    border: 1px solid var(--glow-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .summary-card h2 {
+    color: var(--glow-color);
+  }
+
+  .summary-card p {
+    margin-bottom: 0;
+  }
+</style>
+
+<div class="topic-content-wrapper">
+  <h1>Rebase vs Merge</h1>
+
+  <!-- Learning Objectives -->
+  <div class="learning-card">
+    <h2>Learning Objectives</h2>
+    <ul>
+      <li>Understand the architectural differences between merging and rebasing branches.</li>
+      <li>Analyze how rebasing rewrites commit history to create a clean, linear timeline.</li>
+      <li>Master executing a standard branch rebase step-by-step.</li>
+      <li>Resolve conflicts encountered during a rebase sequence using <code>--continue</code> or <code>--abort</code>.</li>
+      <li>Comprehend and follow the Golden Rule of Rebasing to protect shared team branches.</li>
+    </ul>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section-card">
+    <h2>1. Introduction</h2>
+    <p>Both Merge and Rebase are used to integrate changes from one branch into another. While they achieve the same goal, they do so differently. Merge preserves the complete project history, whereas Rebase rewrites commit history to create a cleaner, linear timeline. Understanding when to use each approach is an important Git skill.</p>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section-card">
+    <h2>2. Merge vs. Rebase Concepts</h2>
+
+    <h3>Git Merge</h3>
+    <p>Merge combines two branches by preserving all historical commits and creating a dedicated <strong>Merge Commit</strong> (M) at the point of integration.</p>
+
+    <div class="flow-container">
+      <div class="flow-step">Diverged Branches (main vs feature)</div>
+      <div class="flow-arrow">↓ (git merge)</div>
+      <div class="flow-step">Commit M (Merge Commit Created)</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Complete Non-Linear History Preserved</div>
+    </div>
+
+    <h3 style="margin-top: 1.5rem;">Git Rebase</h3>
+    <p>Rebase moves or "replays" feature branch commits directly on top of the tip of the target branch, rewriting the individual commit hashes (D', E') to produce a perfectly linear history.</p>
+
+    <div class="flow-container">
+      <div class="flow-step">Base Branch (Commit C)</div>
+      <div class="flow-arrow">↓ (git rebase main)</div>
+      <div class="flow-step">Feature Commits Replayed (D' → E')</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Clean & Linear Commit Graph</div>
+    </div>
+
+    <h3 style="margin-top: 1.5rem;">Why Use Rebase?</h3>
+    <ul>
+      <li>Produces a clean, highly readable, and linear commit timeline.</li>
+      <li>Avoids cluttering the project graph with repetitive merge commits.</li>
+      <li>Simplifies code reviews, history traversal, and bisecting bugs.</li>
+    </ul>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section-card">
+    <h2>3. Performing a Rebase</h2>
+    <p>To rebase your current feature branch onto the latest tip of another branch (e.g., <code>main</code>):</p>
+
+    <p>First, switch to your local feature branch:</p>
+    <div class="code-block">
+      <pre><code>git switch feature-login</code></pre>
+    </div>
+
+    <p>Execute the rebase command targeting the upstream base branch:</p>
+    <div class="code-block">
+      <pre><code>git rebase main</code></pre>
+    </div>
+
+    <p>Git will temporarily unapply your feature commits, update your branch pointer to the tip of <code>main</code>, and re-apply each of your feature commits sequentially.</p>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section-card">
+    <h2>4. Resolving Rebase Conflicts</h2>
+    <p>Because Git re-applies commits one by one during a rebase, conflicts are evaluated for each individual commit in the sequence.</p>
+
+    <h3>Rebase Conflict Workflow</h3>
+    <div class="flow-container">
+      <div class="flow-step">1. Conflict occurs during commit replay</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">2. Resolve conflicting files manually</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">3. Stage resolved files: git add &lt;file&gt;</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">4. Continue rebase: git rebase --continue</div>
+    </div>
+
+    <p style="margin-top: 1.25rem;">If you run into issues or want to cancel the rebase operation entirely and revert back to your original state:</p>
+    <div class="code-block">
+      <pre><code>git rebase --abort</code></pre>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section-card">
+    <h2>5. The Golden Rule of Rebase</h2>
+    <p style="color: var(--glow-color); font-size: 1.05rem;"><strong>Never rebase commits that have already been pushed to a shared (public) branch.</strong></p>
+
+    <p>Rebasing rewrites commit SHA hashes. If you rebase commits that other team members have already pulled, you will create divergent histories and severe merge conflicts for your entire team.</p>
+  </div>
+
+  <!-- Comparison Table -->
+  <div class="section-card">
+    <h2>6. Merge vs. Rebase Comparison</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Git Merge</th>
+          <th>Git Rebase</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>History Structure</strong></td>
+          <td>Preserved (True historical record)</td>
+          <td>Rewritten (Clean linear record)</td>
+        </tr>
+        <tr>
+          <td><strong>Merge Commits</strong></td>
+          <td>Yes (Creates a merge commit)</td>
+          <td>No (No extra merge commits)</td>
+        </tr>
+        <tr>
+          <td><strong>Timeline</strong></td>
+          <td>Non-linear / Forked</td>
+          <td>Linear</td>
+        </tr>
+        <tr>
+          <td><strong>Safe for Public Branches</strong></td>
+          <td>Yes (Safe for shared remote branches)</td>
+          <td>No (Only use on unpushed local branches)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Key Commands Summary Table -->
+  <div class="section-card">
+    <h2>7. Key Commands Reference</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>git merge &lt;branch&gt;</code></td>
+          <td>Integrate specified branch into current branch via merge commit</td>
+        </tr>
+        <tr>
+          <td><code>git rebase &lt;branch&gt;</code></td>
+          <td>Replay current branch commits onto the tip of specified branch</td>
+        </tr>
+        <tr>
+          <td><code>git rebase --continue</code></td>
+          <td>Resume the rebase sequence after resolving a step's conflict</td>
+        </tr>
+        <tr>
+          <td><code>git rebase --abort</code></td>
+          <td>Cancel the active rebase operation and restore original state</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Best Practices Section -->
+  <div class="section-card">
+    <h2>8. Industry Best Practices</h2>
+    <ul>
+      <li>Use <strong>Merge</strong> to integrate public feature branches and preserve full historical audit trails.</li>
+      <li>Use <strong>Rebase</strong> locally to clean up and update your feature branch before submitting a pull request.</li>
+      <li>Never rebase branches that other developers are actively using or basing their work on.</li>
+      <li>Resolve rebase conflicts carefully step-by-step rather than rushing through commits.</li>
+      <li>Run your test suite immediately following a completed rebase to confirm application functionality.</li>
+    </ul>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-card">
+    <h2>Summary</h2>
+    <p>In this lesson, you learned the differences between Merge and Rebase. While merge preserves the complete branch history using a merge commit, rebase creates a clean, linear history by replaying commits on top of another branch. You also learned how to perform a rebase, resolve conflicts, and follow the golden rule of never rebasing public branches.</p>
+  </div>
+</div>

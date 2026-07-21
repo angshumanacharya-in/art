@@ -1,0 +1,387 @@
+<style>
+  /* Ensure full width expansion */
+  .topic-content-wrapper {
+    width: 100%;
+  }
+
+  .topic-content-wrapper h1 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+    text-align: center;
+    width: 100%;
+  }
+
+  .topic-content-wrapper h2 {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .topic-content-wrapper h3 {
+    font-size: 1.05rem;
+    color: var(--glow-color);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .topic-content-wrapper p {
+    color: #d1d5db;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper li {
+    color: #d1d5db;
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  /* Section Cards - Expanding Full Width */
+  .section-card {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .section-card:hover {
+    border-color: rgba(255, 109, 0, 0.4);
+    box-shadow: 0 0 12px -2px rgba(255, 109, 0, 0.15);
+  }
+
+  /* Learning Objectives Box */
+  .learning-card {
+    width: 100%;
+    background-color: rgba(34, 197, 94, 0.05);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .learning-card h2 {
+    color: var(--accent-color);
+  }
+
+  .learning-card ul {
+    margin-bottom: 0;
+  }
+
+  /* Table Design */
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0 0.5rem 0;
+    background-color: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .custom-table th {
+    background-color: #282828;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .custom-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: #d1d5db;
+  }
+
+  .custom-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Code Block */
+  .code-block {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    margin: 0;
+  }
+
+  .code-block code {
+    font-family: 'Consolas', 'Fira Code', 'Courier New', monospace !important;
+    color: var(--accent-color);
+    font-size: 0.95rem;
+  }
+
+  /* Inline Code Tags */
+  code {
+    background: #282828;
+    color: var(--glow-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: monospace !important;
+  }
+
+  /* Vertical Execution Flow Diagram */
+  .flow-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    background-color: var(--bg-main);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .flow-step {
+    background-color: var(--bg-card);
+    border: 1px solid var(--accent-color);
+    color: var(--text-main);
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .flow-step:hover {
+    transform: translateY(-2px);
+    border-color: var(--glow-color);
+  }
+
+  .flow-arrow {
+    color: var(--glow-color);
+    font-size: 1rem;
+    line-height: 1;
+    font-family: monospace !important;
+  }
+
+  /* Summary Card */
+  .summary-card {
+    width: 100%;
+    background-color: rgba(255, 109, 0, 0.05);
+    border: 1px solid var(--glow-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .summary-card h2 {
+    color: var(--glow-color);
+  }
+
+  .summary-card p {
+    margin-bottom: 0;
+  }
+</style>
+
+<div class="topic-content-wrapper">
+  <h1>Resetting History (The Nuclear Options)</h1>
+
+  <!-- Learning Objectives -->
+  <div class="learning-card">
+    <h2>Learning Objectives</h2>
+    <ul>
+      <li>Understand the mechanics of <code>git reset</code> and how it moves the <code>HEAD</code> pointer.</li>
+      <li>Analyze how reset modes affect Git's Three Trees (Working Directory, Staging Area, Local Repository).</li>
+      <li>Differentiate between <code>--soft</code>, <code>--mixed</code>, and <code>--hard</code> reset options.</li>
+      <li>Use <code>git reflog</code> as a safety net to track and recover "lost" commits.</li>
+      <li>Apply best practices to rewrite local history safely without risking shared code.</li>
+    </ul>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section-card">
+    <h2>1. Introduction</h2>
+    <p>Sometimes you need to undo one or more commits completely. Git provides the <code>git reset</code> command to move the current branch to a previous commit. Since <code>git reset</code> can permanently remove changes, it is often called the "nuclear option." Fortunately, Git also provides <code>git reflog</code>, which acts as a safety net to recover commits that appear to be lost.</p>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section-card">
+    <h2>2. What is Git Reset?</h2>
+    <p><code>git reset</code> moves the <code>HEAD</code> pointer and the active branch to a specified target commit, rewinding the commit history timeline.</p>
+
+    <div class="flow-container">
+      <div class="flow-step">Commit A → Commit B → Commit C → Commit D (HEAD)</div>
+      <div class="flow-arrow">↓ (git reset to Commit B)</div>
+      <div class="flow-step">Commit A → Commit B (HEAD)</div>
+    </div>
+
+    <p style="margin-top: 1.25rem;">The specific behavior and state of your working directory depend on the reset mode flag chosen.</p>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section-card">
+    <h2>3. Resetting Across Git's Three Trees</h2>
+    <p>Depending on the chosen mode, <code>git reset</code> selectively alters Git's three operational areas:</p>
+
+    <div class="flow-container">
+      <div class="flow-step">1. Working Directory</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">2. Staging Area (Index)</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">3. Local Repository</div>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section-card">
+    <h2>4. The Three Reset Modes</h2>
+
+    <h3>1. Soft Reset (<code>--soft</code>)</h3>
+    <p>Moves <code>HEAD</code> back to an earlier commit while keeping all modifications staged in the Staging Area.</p>
+    <div class="code-block">
+      <pre><code>git reset --soft &lt;commit-hash&gt;</code></pre>
+    </div>
+    <p><em>Use case: Squashing or consolidating multiple recent commits into a single commit.</em></p>
+
+    <h3>2. Mixed Reset (<code>--mixed</code>)</h3>
+    <p>Moves <code>HEAD</code> back and unstages the changes, placing them into your Working Directory as uncommitted modifications. This is the default mode if no flag is specified.</p>
+    <div class="code-block">
+      <pre><code>git reset --mixed &lt;commit-hash&gt;</code></pre>
+    </div>
+    <p><em>Use case: Unstaging files to reorganize staged changes before re-committing.</em></p>
+
+    <h3>3. Hard Reset (<code>--hard</code>)</h3>
+    <p>Moves <code>HEAD</code> back and permanently clears all changes from both the Staging Area and your Working Directory.</p>
+    <div class="code-block">
+      <pre><code>git reset --hard &lt;commit-hash&gt;</code></pre>
+    </div>
+    <p style="color: var(--glow-color);"><strong>Warning:</strong> <code>--hard</code> permanently deletes uncommitted working changes. Use it with extreme caution!</p>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section-card">
+    <h2>5. Comparison of Reset Modes</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Reset Mode</th>
+          <th>Local Repository</th>
+          <th>Staging Area</th>
+          <th>Working Directory</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>--soft</code></td>
+          <td>Reset to target commit</td>
+          <td>Preserved (Staged)</td>
+          <td>Preserved</td>
+        </tr>
+        <tr>
+          <td><code>--mixed</code> (Default)</td>
+          <td>Reset to target commit</td>
+          <td>Cleared (Unstaged)</td>
+          <td>Preserved</td>
+        </tr>
+        <tr>
+          <td><code>--hard</code></td>
+          <td>Reset to target commit</td>
+          <td>Cleared</td>
+          <td>Cleared (Permanently Discarded)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section-card">
+    <h2>6. Recovering Lost Work with Git Reflog</h2>
+    <p>Even after executing a hard reset, Git maintains a reference log (<code>reflog</code>) recording every local movement of the <code>HEAD</code> pointer across time.</p>
+
+    <p>Inspect the reference log timeline:</p>
+    <div class="code-block">
+      <pre><code>git reflog</code></pre>
+    </div>
+
+    <p>Example Output:</p>
+    <div class="code-block">
+      <pre><code>abc1234 HEAD@{0}: reset: moving to HEAD~2
+def4567 HEAD@{1}: commit: Add user authentication
+ghi7890 HEAD@{2}: commit: Fix header navigation layout</code></pre>
+    </div>
+
+    <p>Restore "lost" commits using their SHA hash or reflog position:</p>
+    <div class="code-block">
+      <pre><code>git reset --hard def4567</code></pre>
+    </div>
+    <p><em>Note: <code>git reflog</code> is the primary tool to rescue accidentally wiped commits.</em></p>
+  </div>
+
+  <!-- Key Commands Summary Table -->
+  <div class="section-card">
+    <h2>7. Key Commands Reference</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>git reset --soft &lt;commit&gt;</code></td>
+          <td>Reset repository history while preserving changes in staging area</td>
+        </tr>
+        <tr>
+          <td><code>git reset --mixed &lt;commit&gt;</code></td>
+          <td>Reset history and unstage changes, keeping them in working directory</td>
+        </tr>
+        <tr>
+          <td><code>git reset --hard &lt;commit&gt;</code></td>
+          <td>Reset history and discard all staged and working directory changes</td>
+        </tr>
+        <tr>
+          <td><code>git reflog</code></td>
+          <td>View full history of local HEAD reference pointer movements</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Best Practices Section -->
+  <div class="section-card">
+    <h2>8. Industry Best Practices</h2>
+    <ul>
+      <li>Use <code>--soft</code> when re-organizing or rewriting unpushed local commits.</li>
+      <li>Use <code>--mixed</code> to unstage changes cleanly when re-grouping work into multiple commits.</li>
+      <li>Avoid using <code>--hard</code> unless you are entirely sure uncommitted changes are no longer needed.</li>
+      <li><strong>Golden Rule:</strong> Never use <code>git reset</code> to rewrite commits that have already been pushed to a shared remote repository.</li>
+      <li>If you accidentally reset and lose code, immediately inspect <code>git reflog</code> to locate and restore the lost commit hash.</li>
+    </ul>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-card">
+    <h2>Summary</h2>
+    <p>In this lesson, you learned how <code>git reset</code> rewrites local history using three modes: <code>--soft</code>, <code>--mixed</code>, and <code>--hard</code>. You also explored how each mode affects Git's three trees and discovered how <code>git reflog</code> serves as a safety net for recovering lost commits. Understanding these commands helps you confidently manage and recover your Git history while avoiding accidental data loss.</p>
+  </div>
+</div>

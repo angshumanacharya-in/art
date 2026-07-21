@@ -1,0 +1,373 @@
+<style>
+  /* Ensure full width expansion */
+  .topic-content-wrapper {
+    width: 100%;
+  }
+
+  .topic-content-wrapper h1 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+    text-align: center;
+    width: 100%;
+  }
+
+  .topic-content-wrapper h2 {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .topic-content-wrapper h3 {
+    font-size: 1.05rem;
+    color: var(--glow-color);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .topic-content-wrapper p {
+    color: #d1d5db;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper li {
+    color: #d1d5db;
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  /* Section Cards - Expanding Full Width */
+  .section-card {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .section-card:hover {
+    border-color: rgba(255, 109, 0, 0.4);
+    box-shadow: 0 0 12px -2px rgba(255, 109, 0, 0.15);
+  }
+
+  /* Learning Objectives Box */
+  .learning-card {
+    width: 100%;
+    background-color: rgba(34, 197, 94, 0.05);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .learning-card h2 {
+    color: var(--accent-color);
+  }
+
+  .learning-card ul {
+    margin-bottom: 0;
+  }
+
+  /* Table Design */
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0 0.5rem 0;
+    background-color: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .custom-table th {
+    background-color: #282828;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .custom-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: #d1d5db;
+  }
+
+  .custom-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Code Block */
+  .code-block {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    margin: 0;
+  }
+
+  .code-block code {
+    font-family: 'Consolas', 'Fira Code', 'Courier New', monospace !important;
+    color: var(--accent-color);
+    font-size: 0.95rem;
+  }
+
+  /* Inline Code Tags */
+  code {
+    background: #282828;
+    color: var(--glow-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: monospace !important;
+  }
+
+  /* Vertical Execution Flow Diagram */
+  .flow-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    background-color: var(--bg-main);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .flow-step {
+    background-color: var(--bg-card);
+    border: 1px solid var(--accent-color);
+    color: var(--text-main);
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .flow-step:hover {
+    transform: translateY(-2px);
+    border-color: var(--glow-color);
+  }
+
+  .flow-arrow {
+    color: var(--glow-color);
+    font-size: 1rem;
+    line-height: 1;
+    font-family: monospace !important;
+  }
+
+  /* Summary Card */
+  .summary-card {
+    width: 100%;
+    background-color: rgba(255, 109, 0, 0.05);
+    border: 1px solid var(--glow-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .summary-card h2 {
+    color: var(--glow-color);
+  }
+
+  .summary-card p {
+    margin-bottom: 0;
+  }
+</style>
+
+<div class="topic-content-wrapper">
+  <h1>Inspecting History & Time Travel</h1>
+
+  <!-- Learning Objectives -->
+  <div class="learning-card">
+    <h2>Learning Objectives</h2>
+    <ul>
+      <li>Understand how commit history is recorded chronologically.</li>
+      <li>Analyze the role and movement of the <code>HEAD</code> pointer.</li>
+      <li>Inspect logs using formatting options like <code>--oneline</code> and <code>--graph</code>.</li>
+      <li>Compare differences across states using various <code>git diff</code> commands.</li>
+      <li>Safely check out historical commits and handle the Detached HEAD state.</li>
+    </ul>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section-card">
+    <h2>1. Introduction</h2>
+    <p>One of Git's greatest strengths is its ability to record every change made to a project. Developers can inspect the complete history, compare different versions, and even revisit previous commits without affecting current work. In this lesson, you'll learn how to explore a repository's history and safely navigate between different points in time.</p>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section-card">
+    <h2>2. Understanding Commit History & HEAD Pointer</h2>
+    <p>Every commit represents a snapshot of your project stored in chronological order:</p>
+
+    <div class="flow-container">
+      <div class="flow-step">Commit A</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Commit B</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Commit C</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Commit D (HEAD)</div>
+    </div>
+
+    <h3 style="margin-top: 1.5rem;">The HEAD Pointer</h3>
+    <p><code>HEAD</code> is a special pointer that indicates the currently checked-out commit or branch. Whenever you create a new commit, <code>HEAD</code> automatically moves forward to point to the latest commit.</p>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section-card">
+    <h2>3. Viewing Commit History</h2>
+    <p>Git provides several commands to inspect project logs across varying levels of detail:</p>
+
+    <h3>Full Commit History</h3>
+    <div class="code-block">
+      <pre><code>git log</code></pre>
+    </div>
+
+    <h3>Compact Single-Line Format</h3>
+    <div class="code-block">
+      <pre><code>git log --oneline</code></pre>
+    </div>
+
+    <h3>Visualizing Branches and Commits</h3>
+    <div class="code-block">
+      <pre><code>git log --graph --oneline --all</code></pre>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section-card">
+    <h2>4. Comparing Changes with Git Diff</h2>
+    <p>Use <code>git diff</code> to inspect exact line-by-line differences between files across states:</p>
+
+    <h3>Compare Working Directory with Staging Area</h3>
+    <div class="code-block">
+      <pre><code>git diff</code></pre>
+    </div>
+
+    <h3>Compare Staged Changes with Last Commit</h3>
+    <div class="code-block">
+      <pre><code>git diff --staged</code></pre>
+    </div>
+
+    <h3>Compare Two Commits</h3>
+    <div class="code-block">
+      <pre><code>git diff &lt;commit1&gt; &lt;commit2&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section-card">
+    <h2>5. Time Travel with Git Checkout & Detached HEAD</h2>
+    <p>You can inspect any historical commit without altering your active working branch:</p>
+
+    <div class="code-block">
+      <pre><code>git checkout &lt;commit-hash&gt;</code></pre>
+    </div>
+
+    <p>Git switches your workspace to match the selected commit state.</p>
+
+    <h3>Understanding Detached HEAD State</h3>
+    <p>When checking out a specific commit hash rather than a branch name, Git enters a <strong>Detached HEAD</strong> state.</p>
+
+    <ul>
+      <li>You can inspect older versions and run or test past code safely.</li>
+      <li>Any new commits made here are not attached to any branch and can easily be lost.</li>
+      <li>Always switch back to your active branch when finished inspecting history.</li>
+    </ul>
+
+    <p>To safely return to your active branch:</p>
+    <div class="code-block">
+      <pre><code>git switch main</code></pre>
+    </div>
+  </div>
+
+  <!-- Key Commands Summary Table -->
+  <div class="section-card">
+    <h2>6. Key Commands Reference</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>git log</code></td>
+          <td>View full commit history logs</td>
+        </tr>
+        <tr>
+          <td><code>git log --oneline</code></td>
+          <td>Display compact commit log history</td>
+        </tr>
+        <tr>
+          <td><code>git log --graph --oneline --all</code></td>
+          <td>Visualize branch topologies and commit graphs</td>
+        </tr>
+        <tr>
+          <td><code>git diff</code></td>
+          <td>Compare unstaged working directory changes</td>
+        </tr>
+        <tr>
+          <td><code>git diff --staged</code></td>
+          <td>Compare staged changes against the latest commit</td>
+        </tr>
+        <tr>
+          <td><code>git checkout &lt;commit&gt;</code></td>
+          <td>Switch workspace to inspect a specific past commit</td>
+        </tr>
+        <tr>
+          <td><code>git switch &lt;branch&gt;</code></td>
+          <td>Return to a target working branch</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Best Practices Section -->
+  <div class="section-card">
+    <h2>7. Best Practices</h2>
+    <ul>
+      <li>Review commit logs regularly to stay aware of project evolution.</li>
+      <li>Write clear, meaningful commit messages to make log inspection easier.</li>
+      <li>Run <code>git diff</code> before staging to verify exact modifications.</li>
+      <li>Avoid creating new commits while in a Detached HEAD state unless intentionally creating a new experimental branch.</li>
+      <li>Use <code>git switch</code> to return to your main working branch after inspecting historical states.</li>
+    </ul>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-card">
+    <h2>Summary</h2>
+    <p>In this lesson, you learned how to inspect a project's history using <code>git log</code>, understand the role of the <code>HEAD</code> pointer, compare changes with <code>git diff</code>, and safely explore previous versions of a project using <code>git checkout</code>. These skills enable you to track project evolution, debug issues, and confidently navigate your repository's history.</p>
+  </div>
+</div>

@@ -1,0 +1,408 @@
+<style>
+  /* Ensure full width expansion */
+  .topic-content-wrapper {
+    width: 100%;
+  }
+
+  .topic-content-wrapper h1 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+    text-align: center;
+    width: 100%;
+  }
+
+  .topic-content-wrapper h2 {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .topic-content-wrapper h3 {
+    font-size: 1.05rem;
+    color: var(--glow-color);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .topic-content-wrapper p {
+    color: #d1d5db;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper li {
+    color: #d1d5db;
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  /* Section Cards - Expanding Full Width */
+  .section-card {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .section-card:hover {
+    border-color: rgba(255, 109, 0, 0.4);
+    box-shadow: 0 0 12px -2px rgba(255, 109, 0, 0.15);
+  }
+
+  /* Learning Objectives Box */
+  .learning-card {
+    width: 100%;
+    background-color: rgba(34, 197, 94, 0.05);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .learning-card h2 {
+    color: var(--accent-color);
+  }
+
+  .learning-card ul {
+    margin-bottom: 0;
+  }
+
+  /* Table Design */
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0 0.5rem 0;
+    background-color: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .custom-table th {
+    background-color: #282828;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .custom-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: #d1d5db;
+  }
+
+  .custom-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Code Block */
+  .code-block {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    margin: 0;
+  }
+
+  .code-block code {
+    font-family: 'Consolas', 'Fira Code', 'Courier New', monospace !important;
+    color: var(--accent-color);
+    font-size: 0.95rem;
+  }
+
+  /* Inline Code Tags */
+  code {
+    background: #282828;
+    color: var(--glow-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: monospace !important;
+  }
+
+  /* Vertical Execution Flow Diagram */
+  .flow-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    background-color: var(--bg-main);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .flow-step {
+    background-color: var(--bg-card);
+    border: 1px solid var(--accent-color);
+    color: var(--text-main);
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .flow-step:hover {
+    transform: translateY(-2px);
+    border-color: var(--glow-color);
+  }
+
+  .flow-arrow {
+    color: var(--glow-color);
+    font-size: 1rem;
+    line-height: 1;
+    font-family: monospace !important;
+  }
+
+  /* Summary Card */
+  .summary-card {
+    width: 100%;
+    background-color: rgba(255, 109, 0, 0.05);
+    border: 1px solid var(--glow-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .summary-card h2 {
+    color: var(--glow-color);
+  }
+
+  .summary-card p {
+    margin-bottom: 0;
+  }
+</style>
+
+<div class="topic-content-wrapper">
+  <h1>Git Hooks & Submodules</h1>
+
+  <!-- Learning Objectives -->
+  <div class="learning-card">
+    <h2>Learning Objectives</h2>
+    <ul>
+      <li>Understand how Git Hooks automate client-side and server-side workflows.</li>
+      <li>Configure, write, and execute custom pre-commit and pre-push scripts.</li>
+      <li>Identify common Git hook triggers and their storage location.</li>
+      <li>Understand Git Submodules and how they manage nested repositories with separate histories.</li>
+      <li>Add, clone, update, and manage submodule dependencies across projects.</li>
+    </ul>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section-card">
+    <h2>1. Introduction</h2>
+    <p>As projects grow, automation and code reuse become increasingly important. Git provides two powerful features to help with this:</p>
+    <ul>
+      <li><strong>Git Hooks:</strong> Automatically execute scripts when certain Git events occur.</li>
+      <li><strong>Git Submodules:</strong> Include one Git repository inside another while keeping their histories separate.</li>
+    </ul>
+    <p>These features are widely used in professional software development to automate workflows and manage external dependencies.</p>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section-card">
+    <h2>2. What are Git Hooks?</h2>
+    <p>Git Hooks are custom executable scripts that Git automatically runs before or after specific lifecycle events, such as committing, merging, or pushing code.</p>
+
+    <div class="flow-container">
+      <div class="flow-step">Trigger Event (e.g., git commit)</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Execute Pre-Commit Hook Script</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Pass Checks? → Proceed or Abort</div>
+    </div>
+
+    <h3 style="margin-top: 1.5rem;">Common Git Hooks</h3>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Hook Name</th>
+          <th>Trigger Point</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>pre-commit</code></td>
+          <td>Runs before a commit is created (ideal for linting and code formatting checks).</td>
+        </tr>
+        <tr>
+          <td><code>commit-msg</code></td>
+          <td>Runs before saving the commit message (used to enforce commit message format rules).</td>
+        </tr>
+        <tr>
+          <td><code>pre-push</code></td>
+          <td>Runs before code is pushed to a remote repository (ideal for running unit tests).</td>
+        </tr>
+        <tr>
+          <td><code>post-merge</code></td>
+          <td>Runs after a successful merge operation completes.</td>
+        </tr>
+        <tr>
+          <td><code>post-checkout</code></td>
+          <td>Runs after switching branches or checking out files.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top: 1rem;">Hooks are stored locally in your repository at:</p>
+    <div class="code-block">
+      <pre><code>.git/hooks/</code></pre>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section-card">
+    <h2>3. Creating a Simple Pre-Commit Hook</h2>
+    <p>Navigate to the hidden hooks directory and create or edit a hook script:</p>
+
+    <div class="code-block">
+      <pre><code>cd .git/hooks</code></pre>
+    </div>
+
+    <p>Add script instructions to the <code>pre-commit</code> file:</p>
+    <div class="code-block">
+      <pre><code>#!/bin/sh
+echo "Running pre-commit checks..."</code></pre>
+    </div>
+
+    <p>Make the script file executable:</p>
+    <div class="code-block">
+      <pre><code>chmod +x pre-commit</code></pre>
+    </div>
+
+    <p>Every subsequent <code>git commit</code> will execute this script prior to finalizing the commit object.</p>
+
+    <h3>Benefits of Git Hooks</h3>
+    <ul>
+      <li>Enforce organizational coding standards automatically.</li>
+      <li>Run automated unit tests before code reaches remote branches.</li>
+      <li>Check and apply uniform code formatting rules.</li>
+      <li>Prevent accidental commits of secrets, API keys, or broken builds.</li>
+    </ul>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section-card">
+    <h2>4. What are Git Submodules?</h2>
+    <p>A Git Submodule allows you to keep a Git repository as a subdirectory of another Git repository, allowing you to clone another project into your repository while keeping your commits separate.</p>
+
+    <div class="flow-container">
+      <div class="flow-step">Main Parent Project</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Submodule Folder (Nested External Repo)</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Independent Commit History Maintained</div>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section-card">
+    <h2>5. Working with Submodules</h2>
+
+    <h3>Adding a Submodule</h3>
+    <p>To attach an external repository as a submodule to your project:</p>
+    <div class="code-block">
+      <pre><code>git submodule add https://github.com/example/library.git</code></pre>
+    </div>
+    <p>Git creates a <code>.gitmodules</code> configuration file and records the specific commit hash of the external library.</p>
+
+    <h3>Cloning a Repository with Submodules</h3>
+    <p>To clone a project along with all of its nested submodules in one command:</p>
+    <div class="code-block">
+      <pre><code>git clone --recurse-submodules https://github.com/example/project.git</code></pre>
+    </div>
+
+    <p>If you already cloned the parent repository without submodules, initialize and fetch them using:</p>
+    <div class="code-block">
+      <pre><code>git submodule update --init --recursive</code></pre>
+    </div>
+
+    <h3>Updating Submodules</h3>
+    <p>Fetch and merge the latest remote commits across all tracked submodules:</p>
+    <div class="code-block">
+      <pre><code>git submodule update --remote</code></pre>
+    </div>
+  </div>
+
+  <!-- Key Commands Summary Table -->
+  <div class="section-card">
+    <h2>6. Key Commands Reference</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>chmod +x .git/hooks/pre-commit</code></td>
+          <td>Make a local hook script executable</td>
+        </tr>
+        <tr>
+          <td><code>git submodule add &lt;url&gt;</code></td>
+          <td>Include an external repository as a nested submodule</td>
+        </tr>
+        <tr>
+          <td><code>git clone --recurse-submodules &lt;url&gt;</code></td>
+          <td>Clone a parent repository and all contained submodules</td>
+        </tr>
+        <tr>
+          <td><code>git submodule update --init --recursive</code></td>
+          <td>Initialize and fetch submodules for an existing clone</td>
+        </tr>
+        <tr>
+          <td><code>git submodule update --remote</code></td>
+          <td>Fetch and apply the latest remote changes for submodules</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Best Practices Section -->
+  <div class="section-card">
+    <h2>7. Industry Best Practices</h2>
+    <ul>
+      <li>Keep hook scripts lightweight and fast so they do not slow down daily developer workflows.</li>
+      <li>Use repository-managed hook frameworks (like Husky), as local <code>.git/hooks/</code> files are not committed or shared via Git by default.</li>
+      <li>Use submodules only when projects genuinely require distinct versioning timelines and independent maintenance.</li>
+      <li>Pin submodules to stable tagged commits rather than moving targets like <code>HEAD</code>.</li>
+      <li>Document any required hook setups or submodule setup instructions in your project's <code>README</code> file.</li>
+    </ul>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-card">
+    <h2>Summary</h2>
+    <p>In this lesson, you learned how Git Hooks automate tasks by running scripts during Git operations such as commits and pushes, helping enforce quality and consistency. You also explored Git Submodules, which allow one Git repository to include another while maintaining separate histories. Together, these features make Git workflows more efficient, automated, and scalable for professional software development.</p>
+  </div>
+</div>

@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git - Knowledge Base</title>
+  <style>
+    :root {
+      --bg-main: #1a1a1a;
+      --bg-sidebar: #242424;
+      --bg-card: #2a2a2a;
+      --border-color: #333333;
+      --text-main: #eff1f5;
+      --text-muted: #9ca3af;
+      --accent-color: #22c55e;
+      --glow-color: #ff6d00;
+      --sidebar-width: 320px;
+    }
+
+    /* Global Font Override */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Calisto MT', 'Bookman Old Style', Georgia, serif !important;
+      font-weight: 700 !important;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      letter-spacing: 0.025em;
+    }
+
+    /* Header Styling */
+    .top-header {
+      background-color: #000000;
+      border-bottom: 1px solid #18181b;
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      flex-shrink: 0;
+      z-index: 20;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .logo-img {
+      height: 3rem; 
+      width: auto;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .logo-container:hover .logo-img {
+      transform: scale(1.05);
+    }
+
+    .brand-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #71717a;
+    }
+
+    .logo-separator {
+      color: #71717a;
+      font-size: 1.25rem;
+    }
+
+    /* Main Layout */
+    .main-container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Sidebar Overlay (Mobile backdrop) */
+    .sidebar-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 14;
+      display: none;
+      backdrop-filter: blur(2px);
+    }
+
+    .sidebar-overlay.active {
+      display: block;
+    }
+
+    /* Desktop Sidebar Styling (Default: Open) */
+    .sidebar {
+      width: var(--sidebar-width);
+      background-color: var(--bg-sidebar);
+      color: var(--text-muted);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      padding: 1.25rem 1rem;
+      flex-shrink: 0;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease, opacity 0.2s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      z-index: 15;
+    }
+
+    /* Desktop Collapse State */
+    .sidebar.collapsed {
+      width: 0;
+      padding: 0;
+      border-right: none;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    /* Accordion Menu */
+    .accordion-section {
+      margin-bottom: 0.75rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .accordion-header:hover {
+      background-color: rgba(255, 109, 0, 0.1);
+      color: var(--glow-color);
+    }
+
+    .accordion-icon {
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+      color: var(--text-muted);
+    }
+
+    .accordion-section.open .accordion-icon {
+      transform: rotate(180deg);
+      color: var(--accent-color);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .accordion-section.open .accordion-content {
+      max-height: 2000px;
+      transition: max-height 0.3s ease-in-out;
+    }
+
+    .accordion-content ul {
+      list-style: none;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .nav-link {
+      display: block;
+      background-color: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-link:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+      background-color: rgba(34, 197, 94, 0.05);
+    }
+
+    .nav-link.active {
+      background-color: rgba(34, 197, 94, 0.15);
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background-color: var(--bg-main);
+      overflow-y: auto;
+    }
+
+    .article-container-wrapper {
+      padding: 2.5rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100%;
+    }
+
+    .article-body {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: rgba(39, 39, 42, 0.4);
+      border: 1px solid rgba(63, 63, 70, 0.8);
+      padding: 40px;
+      border-radius: 12px;
+      transition: max-width 0.3s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .article-body:hover {
+      border-color: var(--glow-color);
+      box-shadow: 0 0 16px -2px rgba(255, 109, 0, 0.4);
+    }
+
+    .loading-text {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* Bottom Article Navigation */
+    .article-navigation {
+      width: 100%;
+      max-width: 1200px;
+      margin: 2rem auto 0 auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: max-width 0.3s ease;
+    }
+
+    .article-nav-btn {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 48%;
+      color: var(--text-main);
+      text-align: left;
+    }
+
+    .article-nav-btn:hover {
+      border-color: var(--glow-color);
+      box-shadow: 0 0 16px -2px rgba(255, 109, 0, 0.4);
+    }
+
+    #nextArticleBtn {
+      text-align: right;
+      align-items: flex-end;
+    }
+
+    .nav-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .nav-title {
+      color: var(--accent-color);
+      font-size: 1rem;
+    }
+
+    /* Page Footer */
+    .main-footer {
+      width: 100%;
+      max-width: 1200px;
+      margin: 3rem auto 0 auto;
+      padding: 2rem 0;
+      border-top: 1px solid #18181b;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .footer-text {
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      color: #71717a;
+    }
+
+    .footer-brand-orange {
+      color: var(--glow-color);
+    }
+
+    .footer-brand-green {
+      color: var(--accent-color);
+    }
+
+    /* Mobile Overrides (<= 768px) */
+    @media (max-width: 768px) {
+      .top-header {
+        padding: 0.75rem 1rem;
+      }
+
+      .brand-title {
+        font-size: 1rem;
+      }
+
+      .logo-img {
+        height: 2.5rem;
+      }
+
+      .sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 280px;
+        box-shadow: 4px 0 16px rgba(0, 0, 0, 0.5);
+        transform: translateX(-100%);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .sidebar.mobile-open {
+        transform: translateX(0);
+      }
+
+      .article-container-wrapper {
+        padding: 1rem;
+      }
+
+      .article-body {
+        padding: 20px;
+      }
+
+      .article-navigation {
+        flex-direction: column;
+      }
+
+      .article-nav-btn {
+        width: 100%;
+      }
+
+      #nextArticleBtn {
+        text-align: left;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="top-header">
+    <div class="logo-container" id="logoToggle" role="button" tabindex="0" title="Toggle Sidebar">
+      <img src="logo.png" alt="Logo" class="logo-img" onerror="this.style.border='1px dashed #333'; this.style.padding='4px';">
+      <span class="logo-separator">/</span>
+      <span class="brand-title">Git</span>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <nav class="sidebar-nav" id="sidebarNav">
+
+        <!-- Core Fundamentals -->
+        <div class="accordion-section">
+          <button class="accordion-header">
+            <span>The Core Fundamentals</span>
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><a href="/git/articles/introduction-to-version-control-and-git-architecture" data-slug="introduction-to-version-control-and-git-architecture" class="nav-link">Introduction to Version Control & Git Architecture</a></li>
+              <li><a href="/git/articles/navigating-the-git-lifecycle" data-slug="navigating-the-git-lifecycle" class="nav-link">Navigating the Git Lifecycle</a></li>
+              <li><a href="/git/articles/inspecting-history-and-time-travel" data-slug="inspecting-history-and-time-travel" class="nav-link">Inspecting History & Time Travel</a></li>
+              <li><a href="/git/articles/branching-fundamentals" data-slug="branching-fundamentals" class="nav-link">Branching Fundamentals</a></li>
+              <li><a href="/git/articles/merging-and-basic-conflict-resolution" data-slug="merging-and-basic-conflict-resolution" class="nav-link">Merging & Basic Conflict Resolution</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Collaboration & Remote Workflows -->
+        <div class="accordion-section">
+          <button class="accordion-header">
+            <span>Collaboration & Remote Workflows</span>
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><a href="/git/articles/connecting-to-the-remote-world" data-slug="connecting-to-the-remote-world" class="nav-link">Connecting to the Remote World</a></li>
+              <li><a href="/git/articles/synchronizing-team-changes" data-slug="synchronizing-team-changes" class="nav-link">Synchronizing Team Changes</a></li>
+              <li><a href="/git/articles/mastering-git-stash-and-local-cleanliness" data-slug="mastering-git-stash-and-local-cleanliness" class="nav-link">Mastering Git Stash & Local Cleanliness</a></li>
+              <li><a href="/git/articles/undoing-mistakes-safely" data-slug="undoing-mistakes-safely" class="nav-link">Undoing Mistakes Safely</a></li>
+              <li><a href="/git/articles/resetting-history-the-nuclear-options" data-slug="resetting-history-the-nuclear-options" class="nav-link">Resetting History (The Nuclear Options)</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Advanced Techniques & Enterprise Workflows -->
+        <div class="accordion-section">
+          <button class="accordion-header">
+            <span>Advanced Techniques & Enterprise Workflows</span>
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><a href="/git/articles/rebase-vs-merge" data-slug="rebase-vs-merge" class="nav-link">Rebase vs Merge</a></li>
+              <li><a href="/git/articles/advanced-history-manipulation-interactive-rebase" data-slug="advanced-history-manipulation-interactive-rebase" class="nav-link">Advanced History Manipulation (Interactive Rebase)</a></li>
+              <li><a href="/git/articles/cherry-picking-and-debugging-history" data-slug="cherry-picking-and-debugging-history" class="nav-link">Cherry-Picking & Debugging History</a></li>
+              <li><a href="/git/articles/enterprise-branching-strategies" data-slug="enterprise-branching-strategies" class="nav-link">Enterprise Branching Strategies</a></li>
+              <li><a href="/git/articles/git-hooks-and-submodules" data-slug="git-hooks-and-submodules" class="nav-link">Git Hooks & Submodules</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content-area" id="contentArea">
+      <div class="article-container-wrapper">
+        <article class="article-body" id="articleContainer">
+          <p class="loading-text">Select a topic from the sidebar to begin.</p>
+        </article>
+
+        <!-- Bottom Article Navigation -->
+        <div class="article-navigation" id="articleNav" style="display: none;">
+          <button id="prevArticleBtn" class="article-nav-btn">
+            <span class="nav-label">← Previous</span>
+            <span class="nav-title" id="prevArticleTitle"></span>
+          </button>
+          <button id="nextArticleBtn" class="article-nav-btn">
+            <span class="nav-label">Next →</span>
+            <span class="nav-title" id="nextArticleTitle"></span>
+          </button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+          <p class="footer-text">
+            Presented by <span class="footer-brand-orange">Tabspace</span> <span class="footer-brand-green">Presentations</span> &copy; 2026. All rights reserved.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sidebar = document.getElementById('sidebar');
+      const logoToggle = document.getElementById('logoToggle');
+      const sidebarNav = document.getElementById('sidebarNav');
+      const sidebarOverlay = document.getElementById('sidebarOverlay');
+      const articleContainer = document.getElementById('articleContainer');
+      
+      // Navigation elements
+      const articleNav = document.getElementById('articleNav');
+      const prevBtn = document.getElementById('prevArticleBtn');
+      const nextBtn = document.getElementById('nextArticleBtn');
+      const prevTitle = document.getElementById('prevArticleTitle');
+      const nextTitle = document.getElementById('nextArticleTitle');
+
+      // Helper function to close sidebar on mobile
+      function closeMobileSidebar() {
+        if (window.innerWidth <= 768) {
+          sidebar.classList.remove('mobile-open');
+          sidebarOverlay.classList.remove('active');
+        }
+      }
+
+      // Toggle Sidebar behavior
+      logoToggle.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          sidebar.classList.toggle('mobile-open');
+          sidebarOverlay.classList.toggle('active', sidebar.classList.contains('mobile-open'));
+        } else {
+          sidebar.classList.toggle('collapsed');
+        }
+      });
+
+      sidebarOverlay.addEventListener('click', closeMobileSidebar);
+
+      // Accordion Toggle Behavior
+      const accordionHeaders = document.querySelectorAll('.accordion-header');
+      accordionHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+          const section = header.parentElement;
+          const isOpen = section.classList.contains('open');
+
+          document.querySelectorAll('.accordion-section').forEach(sec => {
+            sec.classList.remove('open');
+          });
+
+          if (!isOpen) {
+            section.classList.add('open');
+          }
+        });
+      });
+
+      // Helper: Determines root path dynamically for safe fetching on GitHub Pages
+      function getAppBaseRoot() {
+        const path = window.location.pathname;
+        
+        // 1. If inside a /git/ subfolder route
+        const gitIndex = path.indexOf('/git/');
+        if (gitIndex !== -1) {
+          return path.substring(0, gitIndex);
+        }
+        
+        // 2. If inside /articles/ route
+        const articlesIndex = path.indexOf('/articles/');
+        if (articlesIndex !== -1) {
+          return path.substring(0, articlesIndex);
+        }
+        
+        // 3. Fallback for GitHub Pages root repo path (e.g., /repo-name or /)
+        const cleanPath = path.endsWith('/') ? path.slice(0, -1) : path;
+        return cleanPath;
+      }
+
+      // Load article asynchronously
+      async function loadArticle(slug, pushToHistory = true) {
+        if (!slug) return;
+        
+        // Clean slug
+        slug = slug.replace(/^.*\/articles\//, '').replace(/\.html$/, '');
+
+        const contentArea = document.getElementById('contentArea');
+        if (contentArea) contentArea.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        articleContainer.innerHTML = '<p class="loading-text">Loading topic content...</p>';
+        articleNav.style.display = 'none';
+
+        const baseRoot = getAppBaseRoot();
+        const fetchPath = `${baseRoot}/articles/${slug}.html?t=${Date.now()}`;
+        const displayUrl = `${baseRoot}/git/articles/${slug}`;
+
+        try {
+          const response = await fetch(fetchPath);
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+          }
+
+          const htmlContent = await response.text();
+          articleContainer.innerHTML = htmlContent;
+
+          if (pushToHistory) {
+            history.pushState({ slug }, '', displayUrl);
+          }
+
+          updateActiveLink(slug);
+          updateNavigationButtons(slug);
+
+        } catch (error) {
+          articleContainer.innerHTML = `
+            <div style="padding: 1rem 0;">
+              <h2 style="color: #ff6d00;">Topic Content Not Found</h2>
+              <p style="margin-top: 0.5rem;">Failed to load <code>articles/${slug}.html</code>.</p>
+              <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #9ca3af;">Checked Path: <code>${fetchPath}</code></p>
+            </div>
+          `;
+          console.error('Fetch Error:', error);
+        }
+      }
+
+      // Navigation button handler
+      function updateNavigationButtons(currentSlug) {
+        const links = Array.from(sidebarNav.querySelectorAll('.nav-link'));
+        const currentIndex = links.findIndex(link => link.dataset.slug === currentSlug);
+
+        if (currentIndex === -1) {
+          articleNav.style.display = 'none';
+          return;
+        }
+
+        articleNav.style.display = 'flex';
+
+        if (currentIndex > 0) {
+          const prevLink = links[currentIndex - 1];
+          prevBtn.style.visibility = 'visible';
+          prevTitle.textContent = prevLink.textContent;
+          prevBtn.dataset.targetSlug = prevLink.dataset.slug;
+        } else {
+          prevBtn.style.visibility = 'hidden'; 
+        }
+
+        if (currentIndex < links.length - 1) {
+          const nextLink = links[currentIndex + 1];
+          nextBtn.style.visibility = 'visible';
+          nextTitle.textContent = nextLink.textContent;
+          nextBtn.dataset.targetSlug = nextLink.dataset.slug;
+        } else {
+          nextBtn.style.visibility = 'hidden';
+        }
+      }
+
+      prevBtn.addEventListener('click', () => {
+        if (prevBtn.dataset.targetSlug) loadArticle(prevBtn.dataset.targetSlug, true);
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (nextBtn.dataset.targetSlug) loadArticle(nextBtn.dataset.targetSlug, true);
+      });
+
+      function updateActiveLink(slug) {
+        const links = sidebarNav.querySelectorAll('.nav-link');
+        links.forEach(link => {
+          if (link.dataset.slug === slug) {
+            link.classList.add('active');
+            const parentSection = link.closest('.accordion-section');
+            if (parentSection) {
+              parentSection.classList.add('open');
+            }
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+
+      sidebarNav.addEventListener('click', (e) => {
+        const targetLink = e.target.closest('.nav-link');
+        if (!targetLink) return;
+
+        e.preventDefault();
+        const slug = targetLink.dataset.slug;
+        if (slug) {
+          loadArticle(slug, true);
+          closeMobileSidebar();
+        }
+      });
+
+      window.addEventListener('popstate', (e) => {
+        if (e.state && e.state.slug) {
+          loadArticle(e.state.slug, false);
+        } else {
+          resolveInitialRoute();
+        }
+      });
+
+      function resolveInitialRoute() {
+        let path = window.location.pathname;
+
+        // Check if we were redirected from 404.html redirect trick
+        if (sessionStorage.redirect) {
+          const redirectedUrl = new URL(sessionStorage.redirect);
+          delete sessionStorage.redirect;
+          path = redirectedUrl.pathname;
+          
+          // Restore the clean target URL bar without causing a reload
+          history.replaceState(null, '', path);
+        }
+
+        const match = path.match(/\/articles\/([^\/\?#]+)/);
+
+        if (match && match[1]) {
+          loadArticle(match[1], false);
+        } else {
+          const firstLink = sidebarNav.querySelector('.nav-link');
+          if (firstLink && firstLink.dataset.slug) {
+            loadArticle(firstLink.dataset.slug, false);
+          }
+        }
+      }
+
+      resolveInitialRoute();
+    });
+  </script>
+</body>
+</html>

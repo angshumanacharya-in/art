@@ -1,0 +1,377 @@
+<style>
+  /* Ensure full width expansion */
+  .topic-content-wrapper {
+    width: 100%;
+  }
+
+  .topic-content-wrapper h1 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+    text-align: center;
+    width: 100%;
+  }
+
+  .topic-content-wrapper h2 {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .topic-content-wrapper h3 {
+    font-size: 1.05rem;
+    color: var(--glow-color);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .topic-content-wrapper p {
+    color: #d1d5db;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-content-wrapper li {
+    color: #d1d5db;
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  /* Section Cards - Expanding Full Width */
+  .section-card {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .section-card:hover {
+    border-color: rgba(255, 109, 0, 0.4);
+    box-shadow: 0 0 12px -2px rgba(255, 109, 0, 0.15);
+  }
+
+  /* Learning Objectives Box */
+  .learning-card {
+    width: 100%;
+    background-color: rgba(34, 197, 94, 0.05);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .learning-card h2 {
+    color: var(--accent-color);
+  }
+
+  .learning-card ul {
+    margin-bottom: 0;
+  }
+
+  /* Table Design */
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0 0.5rem 0;
+    background-color: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .custom-table th {
+    background-color: #282828;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .custom-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: #d1d5db;
+  }
+
+  .custom-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Code Block */
+  .code-block {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    margin: 0;
+  }
+
+  .code-block code {
+    font-family: 'Consolas', 'Fira Code', 'Courier New', monospace !important;
+    color: var(--accent-color);
+    font-size: 0.95rem;
+  }
+
+  /* Inline Code Tags */
+  code {
+    background: #282828;
+    color: var(--glow-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: monospace !important;
+  }
+
+  /* Vertical Execution Flow Diagram */
+  .flow-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    background-color: var(--bg-main);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .flow-step {
+    background-color: var(--bg-card);
+    border: 1px solid var(--accent-color);
+    color: var(--text-main);
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .flow-step:hover {
+    transform: translateY(-2px);
+    border-color: var(--glow-color);
+  }
+
+  .flow-arrow {
+    color: var(--glow-color);
+    font-size: 1rem;
+    line-height: 1;
+    font-family: monospace !important;
+  }
+
+  /* Summary Card */
+  .summary-card {
+    width: 100%;
+    background-color: rgba(255, 109, 0, 0.05);
+    border: 1px solid var(--glow-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .summary-card h2 {
+    color: var(--glow-color);
+  }
+
+  .summary-card p {
+    margin-bottom: 0;
+  }
+</style>
+
+<div class="topic-content-wrapper">
+  <h1>Connecting to the Remote World</h1>
+
+  <!-- Learning Objectives -->
+  <div class="learning-card">
+    <h2>Learning Objectives</h2>
+    <ul>
+      <li>Understand the concept and role of remote repositories in modern team workflows.</li>
+      <li>Compare HTTPS and SSH authentication methods for remote access.</li>
+      <li>Clone remote repositories and link existing local codebases to remote platforms.</li>
+      <li>Manage, inspect, and verify remote pointers using <code>git remote</code>.</li>
+      <li>Push local commit histories securely to remote central servers.</li>
+    </ul>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section-card">
+    <h2>1. Introduction</h2>
+    <p>Git allows you to manage your project locally, but software development often involves collaborating with others. Remote repositories hosted on platforms like GitHub, GitLab, or Bitbucket act as a central location where developers can share code, synchronize changes, and collaborate efficiently. In this lesson, you'll learn how to connect your local repository to a remote repository and push your code online.</p>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section-card">
+    <h2>2. What is a Remote Repository?</h2>
+    <p>A remote repository is a version of your project hosted on the internet or a network server. It serves as the shared single source of truth for all team members involved in a codebase.</p>
+
+    <div class="flow-container">
+      <div class="flow-step">Local Repository</div>
+      <div class="flow-arrow">↓ (git push)</div>
+      <div class="flow-step">Remote Repository (GitHub / GitLab)</div>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section-card">
+    <h2>3. Authentication Methods</h2>
+    <p>Git supports two primary protocols for authenticating transactions with remote servers:</p>
+
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Authentication Method</th>
+          <th>Overview & Key Features</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>HTTPS</strong></td>
+          <td>
+            <ul>
+              <li>Uses standard web URLs and Personal Access Tokens (PAT).</li>
+              <li>Simple and quick setup for beginners.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>SSH</strong></td>
+          <td>
+            <ul>
+              <li>Uses public/private SSH key pairs configured on your machine.</li>
+              <li>Highly secure and seamless (no constant password/token prompts).</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section-card">
+    <h2>4. Cloning & Linking Repositories</h2>
+
+    <h3>Cloning an Existing Remote Repository</h3>
+    <p>To download an existing remote codebase along with its entire history to your local machine:</p>
+    <div class="code-block">
+      <pre><code>git clone https://github.com/username/project.git</code></pre>
+    </div>
+
+    <h3>Adding a Remote to a Local Repository</h3>
+    <p>If you initialized a repository locally and want to attach it to an online host:</p>
+    <div class="code-block">
+      <pre><code>git remote add origin https://github.com/username/project.git</code></pre>
+    </div>
+    <p><em>Note: <code>origin</code> is the standard conventional name assigned to your main remote pointer.</em></p>
+
+    <h3>Viewing Remote Repositories</h3>
+    <p>Inspect all configured remote shortcuts and their target URLs:</p>
+    <div class="code-block">
+      <pre><code>git remote -v</code></pre>
+    </div>
+
+    <p>Example Output:</p>
+    <div class="code-block">
+      <pre><code>origin  https://github.com/username/project.git (fetch)
+origin  https://github.com/username/project.git (push)</code></pre>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section-card">
+    <h2>5. Pushing Changes to Remote</h2>
+    <p>Upload your local commits to the remote target server using <code>git push</code>:</p>
+
+    <div class="code-block">
+      <pre><code>git push origin main</code></pre>
+    </div>
+
+    <h3>Setting Upstream Branches</h3>
+    <p>When pushing a branch for the first time, use the <code>-u</code> (upstream) flag:</p>
+
+    <div class="code-block">
+      <pre><code>git push -u origin main</code></pre>
+    </div>
+
+    <p>This links your local branch to the remote branch, allowing you to use the shorthand command for subsequent pushes:</p>
+    <div class="code-block">
+      <pre><code>git push</code></pre>
+    </div>
+  </div>
+
+  <!-- Key Commands Summary Table -->
+  <div class="section-card">
+    <h2>6. Key Commands Reference</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>git clone &lt;url&gt;</code></td>
+          <td>Download a full remote repository locally</td>
+        </tr>
+        <tr>
+          <td><code>git remote add origin &lt;url&gt;</code></td>
+          <td>Add a remote repository shortcut named 'origin'</td>
+        </tr>
+        <tr>
+          <td><code>git remote -v</code></td>
+          <td>Display connected remote pointers and their URLs</td>
+        </tr>
+        <tr>
+          <td><code>git push origin &lt;branch&gt;</code></td>
+          <td>Upload local commits to a specific remote branch</td>
+        </tr>
+        <tr>
+          <td><code>git push -u origin &lt;branch&gt;</code></td>
+          <td>Push local commits and set upstream tracking link</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Best Practices Section -->
+  <div class="section-card">
+    <h2>7. Industry Best Practices</h2>
+    <ul>
+      <li>Configure and use SSH keys for frictionless daily development.</li>
+      <li>Push local commits regularly to prevent losing uncommitted or local-only progress.</li>
+      <li>Always double-check remote URLs using <code>git remote -v</code> before executing major operations.</li>
+      <li>Ensure all necessary code changes are clean and committed locally prior to pushing.</li>
+      <li>Maintain strict synchronization between local working branches and remote upstream targets.</li>
+    </ul>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-card">
+    <h2>Summary</h2>
+    <p>In this lesson, you learned how remote repositories enable collaboration using platforms like GitHub and GitLab. You explored HTTPS and SSH authentication, learned how to clone repositories, add remote connections, view configured remotes, and push local commits to a remote repository. These skills are the foundation of collaborative Git workflows.</p>
+  </div>
+</div>
